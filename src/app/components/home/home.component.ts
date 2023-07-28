@@ -18,8 +18,6 @@ export interface Tile {
 })
 export class HomeComponent implements OnInit, OnDestroy{
 
-
-
   marioses: Marios[] = [];
   private destroy$: Subject<void> = new Subject()
 

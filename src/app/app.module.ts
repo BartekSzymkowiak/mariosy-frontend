@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -14,10 +13,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { ReceivedMariosComponent } from './components/received-marios/received-marios.component';
-import { SentMariosComponent } from './components/sent-marios/sent-marios.component';
 import { CreateMariosComponent } from './components/create-marios/create-marios.component';
 import { MariosGridComponent } from './shared/marios-grid/marios-grid.component';
+import { ReceivedSentMariosComponent } from './components/received-sent-marios/received-sent-marios.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +25,9 @@ import { MariosGridComponent } from './shared/marios-grid/marios-grid.component'
     InfoCardComponent,
     MariosCardComponent,
     MariosDialogComponent,
-    ReceivedMariosComponent,
-    SentMariosComponent,
     CreateMariosComponent,
-    MariosGridComponent
+    MariosGridComponent,
+    ReceivedSentMariosComponent
   ],
   imports: [
     BrowserModule,

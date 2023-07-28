@@ -1,11 +1,5 @@
 mat-grid-tile {
-    /* background: lightblue;
-    display: flex;
-    align-items: stretch; */
-
-
     border-radius: 5px;
     background: #FFF;
     min-width: 100px;
-    
   }
