@@ -26,6 +26,7 @@
     border-radius: 5px;
     background-color: #FFF;
     flex-grow: 1;
+    box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
 }
 
 .mariosy-icon{

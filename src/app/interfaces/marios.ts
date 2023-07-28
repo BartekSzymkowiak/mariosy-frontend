@@ -5,6 +5,7 @@ export interface Marios {
     title: string,
     comment: string,
     type: string,
-    creationInstant: Date
+    creatorFirstName: String,
+    creatorLastName: String
 }
 

@@ -1,0 +1,7 @@
+<div class="marios-card" (click)="openDialog()">
+   <p class="from-text"><mat-icon svgIcon="person-sharp"></mat-icon> From: {{marios.creatorFirstName}} {{marios.creatorLastName}}</p>
+   <p class="title-text">  <mat-icon svgIcon="green-star"></mat-icon> {{marios.type}}</p>
+   <p class="title-text">T: {{marios.title}}</p> 
+   <span class="comment-text">{{marios.comment | slice:0:75}}...</span> 
+   <span class="more-text">See more</span> 
+</div>

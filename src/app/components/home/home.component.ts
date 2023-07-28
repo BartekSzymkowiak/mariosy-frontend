@@ -1,31 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { MariosyService } from './../../services/mariosy.service';
+import { Component, OnInit, OnDestroy} from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { Marios } from 'src/app/interfaces/marios';
+import { Subject, takeUntil } from 'rxjs';
+
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, OnDestroy{
 
 
 
-  constructor(private http: HttpClient) { 
+  marioses: Marios[] = [];
+  private destroy$: Subject<void> = new Subject()
+
+  constructor(private mariosyService: MariosyService) { 
   }
 
   ngOnInit() {
-    this.getMarioses()
-    this.getUsers()
+    this.mariosyService.marioses
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(data => {
+      this.marioses = data
+    })
   }
 
-  getMarioses() {
-    this.http.get('/api/marioses').subscribe(data => console.log('MARIOSES:' + data))
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
-
-  getUsers() {
-    this.http.get('/api/users').subscribe(data => console.log('USERS: ' + data))
-  }
-
-  
+ 
 
 }

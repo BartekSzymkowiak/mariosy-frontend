@@ -14,5 +14,16 @@
     align-items: stretch;
     column-gap: 18px;
     align-content: stretch;
+    margin-bottom: 36px;
+}
+
+.white-font{
+    color: #FFF;
+    font-family: Open Sans;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 3.5px;   
 }
 

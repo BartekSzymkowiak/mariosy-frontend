@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 body {
     background: linear-gradient(179deg, #E74850 8.85%, #236FE9 27.08%, #4286F4 55.73%);
     background-attachment: fixed;
@@ -12,7 +13,6 @@ body {
     background: #FFDF24;
 
     color: #000;
-    font-family: Open Sans;
     font-size: 17px;
     font-style: normal;
     font-weight: 700;
@@ -21,4 +21,14 @@ body {
 
     text-align: center;
     padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;     
+
 }
+html, body { height: 100%; }
+body { margin: 0;  font-family: Open Sans; }
+
+
