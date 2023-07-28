@@ -17,7 +17,8 @@ export class MariosCardComponent {
   openDialog(){
     this.matDialog.open(MariosDialogComponent,{
       data : this.marios,
-      width: '350px',
+      width: '700px',
+      height: '275px',
     })
   }
 

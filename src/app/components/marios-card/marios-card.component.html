@@ -1,7 +1,22 @@
 <div class="marios-card" (click)="openDialog()">
-   <p class="from-text"><mat-icon svgIcon="person-sharp"></mat-icon> From: {{marios.creatorFirstName}} {{marios.creatorLastName}}</p>
-   <p class="title-text">  <mat-icon svgIcon="green-star"></mat-icon> {{marios.type}}</p>
-   <p class="title-text">T: {{marios.title}}</p> 
-   <span class="comment-text">{{marios.comment | slice:0:75}}...</span> 
-   <span class="more-text">See more</span> 
+
+
+   <div class="headers-grid-container">
+
+      <mat-icon svgIcon="person-sharp" class="grid-item icon-size"></mat-icon>
+      <h2 class="from-text grid-item">From: {{marios.creatorFirstName}} {{marios.creatorLastName}}</h2>
+   
+      <mat-icon svgIcon="green-star" class="grid-item icon-size"></mat-icon>
+      <h2 class="type-text grid-item">{{marios.type}}</h2>
+      
+      <h2 class="title-text grid-item">T:</h2>
+      <h2 class="title-text grid-item">{{marios.title}}</h2> 
+
+   </div>   
+
+   <p class="comment">
+      <span class="comment-text">{{marios.comment | slice:0:75}}...</span> 
+      <span class="more-text">See more</span> 
+   </p>
+
 </div>

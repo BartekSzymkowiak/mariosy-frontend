@@ -1,10 +1,8 @@
 .marios-card{
     border-radius: 5px;
     background: #FFF;
-    padding-top: 1px;
-    padding-left: 5px;
+    padding: 5px 5px 5px 5px;
 }
-
 
 .marios-card:after {
     content:'READ MORE';
@@ -32,8 +30,43 @@
     opacity:1;
 }
 
+.icon-size {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+}
+
+.icon-size-transform {
+    transform: scale(2);
+}
+
+
+.headers-grid-container{
+    display: grid;
+    width: fit-content;
+    grid-template-columns: 25px auto;
+    grid-template-rows: 30px 30px 30px;
+
+    justify-items: start;
+    align-items: center;
+
+    grid-row: auto auto;
+
+    .grid-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+
+.comment{
+    margin: 5px 0px 5px 0px;
+}
 
 .from-text{
+   
     color: #EA808E;
     font-family: Open Sans;
     font-size: 18px;
@@ -41,6 +74,19 @@
     font-weight: 700;
     line-height: normal;
 }
+
+.type-text{
+    color: #494949;
+    font-family: Open Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    display: flex;
+    align-items: center;
+}
+
 
 .title-text{
     color: #494949;

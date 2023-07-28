@@ -1,10 +1,22 @@
+<div class="marios-modal">
 
-    <button mat-icon-button  style="float: right; margin: 5px;" (click)="close()">
-      <mat-icon>close</mat-icon>
+  <button mat-icon-button (click)="close()">
+    <mat-icon>close</mat-icon>
   </button>
+
   <mat-dialog-content>
-    <p>{{data.title}}</p>
+    <div class="marios-modal-content">
+      <div class="first-row">
+        <h2 class="from-text">From: {{data.creatorFirstName}} {{data.creatorLastName}}</h2>
+        
+        <h2 class="type-text"><mat-icon svgIcon="green-star" class="icon-size"></mat-icon>{{data.type}}</h2>
+      </div>
+      <h1 class="title-text">{{data.title}}</h1>
+      <p class="comment-text">{{data.comment}}</p>
+    </div>
   </mat-dialog-content>
 
+</div>
+ 
 
 
