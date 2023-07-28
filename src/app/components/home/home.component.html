@@ -11,19 +11,9 @@
     </a>
        
     <p class="white-font">LAST MARIOS:</p>
+    <app-marios-grid [marioses]="marioses"></app-marios-grid>
 
-
-    <div class="test">
-        <mat-grid-list cols="3" gutterSize="18" rowHeight="2:1.5">
-            <mat-grid-tile
-                *ngFor="let marios of marioses">
-                <app-marios-card [marios]="marios"></app-marios-card>          
-            </mat-grid-tile>
-          </mat-grid-list>
-    </div>
-   
-
-
+ 
 </div>
 
 
