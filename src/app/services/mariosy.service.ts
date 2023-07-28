@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Marios } from '../interfaces/marios';
 import { BehaviorSubject } from 'rxjs';
-import { USER_ID } from '../dev_constants';
+import { LAST_MARIOS_COUNT, USER_ID } from '../dev_constants';
 
 
 
@@ -16,8 +16,8 @@ export class MariosyService {
   
   constructor( private http: HttpClient) { }
 
-  private marioses$ = new BehaviorSubject<Marios[]>([])
-  private mariosesData: Marios[] = [];
+  private lastMarioses$ = new BehaviorSubject<Marios[]>([])
+  private lastMariosesData: Marios[] = [];
 
   private createdMarioses$ = new BehaviorSubject<Marios[]>([])
   private createdMariosesData: Marios[] = [];
@@ -27,62 +27,57 @@ export class MariosyService {
   private receivedMariosesData: Marios[] = [];
   private receivedMariosesCount$ = new BehaviorSubject<number>(0)
 
-  private mariosesDataTest: Marios[] = [ { externalId: "123123",
-                          creatorExternalId: "1",
-                          receiversExternalIds: ["2","3"],
-                          title: "Marios 4 you",
-                          comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
-                          type: "MARIOS1",
-                          creatorFirstName: "Robert",
-                          creatorLastName: "Pudzianowski"},
-                          {
-                          externalId: "123124",
-                          creatorExternalId: "1",
-                          receiversExternalIds: ["2","3"],
-                          title: "Marios 4 you",
-                          comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
-                          type: "MARIOS3",
-                          creatorFirstName: "Robert",
-                          creatorLastName: "Pudzianowski"},
-                          {
-                            externalId: "123124",
-                            creatorExternalId: "3",
-                            receiversExternalIds: ["6","1"],
-                            title: "Marios 4 you",
-                            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
-                            type: "MARIOS2",
-                            creatorFirstName: "Robert",
-                            creatorLastName: "Pudzianowski"},
-                          {
-                            externalId: "123124",
-                            creatorExternalId: "2",
-                            receiversExternalIds: ["1","7"],
-                            title: "Marios 4 you",
-                            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
-                            type: "MARIOS1",
-                            creatorFirstName: "Robert",
-                            creatorLastName: "Pudzianowski"} ]
+  // private mariosesDataTest: Marios[] = [ { externalId: "123123",
+  //                         creatorExternalId: "1",
+  //                         receiversExternalIds: ["2","3"],
+  //                         title: "Marios 4 you",
+  //                         comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
+  //                         type: "MARIOS1",
+  //                         creatorFirstName: "Robert",
+  //                         creatorLastName: "Pudzianowski"},
+  //                         {
+  //                         externalId: "123124",
+  //                         creatorExternalId: "1",
+  //                         receiversExternalIds: ["2","3"],
+  //                         title: "Marios 4 you",
+  //                         comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
+  //                         type: "MARIOS3",
+  //                         creatorFirstName: "Robert",
+  //                         creatorLastName: "Pudzianowski"},
+  //                         {
+  //                           externalId: "123124",
+  //                           creatorExternalId: "3",
+  //                           receiversExternalIds: ["6","1"],
+  //                           title: "Marios 4 you",
+  //                           comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
+  //                           type: "MARIOS2",
+  //                           creatorFirstName: "Robert",
+  //                           creatorLastName: "Pudzianowski"},
+  //                         {
+  //                           externalId: "123124",
+  //                           creatorExternalId: "2",
+  //                           receiversExternalIds: ["1","7"],
+  //                           title: "Marios 4 you",
+  //                           comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
+  //                           type: "MARIOS1",
+  //                           creatorFirstName: "Robert",
+  //                           creatorLastName: "Pudzianowski"} ]
 
-  fetchMarioses(){
-     // this.http.get('/api/marioses').subscribe(data => console.log('MARIOSES:' + data))
-
-     // this.mariosesData = this.mariosesDataTest;
-     // this.marioses$.next([...this.mariosesData])
-
-     return this.http.get<Marios[]>(this.mariosesUrl)
+  fetchLastMarioses(){
+    const url = `${this.mariosesUrl}?page=0&size=${LAST_MARIOS_COUNT}`
+     return this.http.get<Marios[]>(url)
      .subscribe((data) => {
-       this.mariosesData = data;
-      // console.log(this.mariosesData)
-       this.marioses$.next(data)
+       this.lastMariosesData = data;
+       this.lastMarioses$.next(data)
      })
 
     }
 
-  get marioses() {
-    if(this.mariosesData.length === 0) {
-      this.fetchMarioses()
+  get lastMarioses() {
+    if(this.lastMariosesData.length === 0) {
+      this.fetchLastMarioses()
     }
-    return this.marioses$.asObservable()
+    return this.lastMarioses$.asObservable()
   }
 
 

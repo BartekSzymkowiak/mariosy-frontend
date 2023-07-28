@@ -7,5 +7,6 @@ export interface Marios {
     type: string,
     creatorFirstName: String,
     creatorLastName: String
+    creationInstant: Date
 }
 

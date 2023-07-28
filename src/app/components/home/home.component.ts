@@ -18,7 +18,7 @@ export interface Tile {
 })
 export class HomeComponent implements OnInit, OnDestroy{
 
-  marioses: Marios[] = [];
+  lastMarioses: Marios[] = [];
   createdMariosesCount: number = 0;
   receivedMariosesCount: number = 0;
 
@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.mariosyService.marioses
+    this.mariosyService.lastMarioses
     .pipe(takeUntil(this.destroy$))
     .subscribe(data => {
-      this.marioses = data
+      this.lastMarioses = data
     })
 
     this.mariosyService.createdMariosesCount
