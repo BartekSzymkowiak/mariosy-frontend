@@ -9,5 +9,6 @@ export class InfoCardComponent {
   
   @Input() text:  string = '';
   @Input() number: number = 0;
+  @Input() route: string = '';
 
 }

@@ -27,6 +27,7 @@
     background-color: #FFF;
     flex-grow: 1;
     box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
 }
 
 .mariosy-icon{
@@ -34,7 +35,6 @@
     width: 203px;
     height: 203px;
     opacity: 0.5;  
-   
 }
 
 .icon-div{

@@ -1,13 +1,12 @@
-<div id="home-container">
+<div class="page-content-container">
 
     <div id="info-cards-container">
-        <app-info-card [text]="'RECEIVED\nMARIOS:'" [number]=99></app-info-card>
-        <app-info-card [text]="'SENT\nMARIOS:'" [number]=2></app-info-card>
+        <app-info-card [text]="'RECEIVED\nMARIOS:'" [route]="'/received'" [number]=99></app-info-card>
+        <app-info-card [text]="'SENT\nMARIOS:'" [route]="'/sent'" [number]=2></app-info-card>
     </div>
 
-   
-    <a class="button" style="align-self: flex-end;">
-        ADD MARIOS
+    <a class="button grey-on-hover" style="align-self: flex-end;" routerLink="/create">
+        <span style="padding-right: 5px;">ADD MARIOS</span>
         <mat-icon svgIcon="right-arrow"></mat-icon>
     </a>
        
