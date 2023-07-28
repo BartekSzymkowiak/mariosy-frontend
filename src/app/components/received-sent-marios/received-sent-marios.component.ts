@@ -25,7 +25,7 @@ export class ReceivedSentMariosComponent {
     if (this.router.url==='/received'){
       this.gridTitle = 'RECEIVED MARIOS:'
 
-      this.mariosyService.marioses
+      this.mariosyService.receivedMarioses
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         this.marioses = data
@@ -34,12 +34,11 @@ export class ReceivedSentMariosComponent {
     } else{
       this.gridTitle = 'SENT MARIOS:'
 
-      this.mariosyService.marioses
+      this.mariosyService.createdMarioses
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         this.marioses = data
       })
-
     }
   }
 

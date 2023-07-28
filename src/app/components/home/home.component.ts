@@ -19,6 +19,9 @@ export interface Tile {
 export class HomeComponent implements OnInit, OnDestroy{
 
   marioses: Marios[] = [];
+  createdMariosesCount: number = 0;
+  receivedMariosesCount: number = 0;
+
   private destroy$: Subject<void> = new Subject()
 
   constructor(private mariosyService: MariosyService) { 
@@ -30,6 +33,19 @@ export class HomeComponent implements OnInit, OnDestroy{
     .subscribe(data => {
       this.marioses = data
     })
+
+    this.mariosyService.createdMariosesCount
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(data => {
+      this.createdMariosesCount = data
+    })
+
+    this.mariosyService.receivedMariosesCount
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(data => {
+      this.receivedMariosesCount = data
+    })
+
   }
 
   ngOnDestroy() {

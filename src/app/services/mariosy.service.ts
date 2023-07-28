@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Marios } from '../interfaces/marios';
 import { BehaviorSubject } from 'rxjs';
+import { USER_ID } from '../dev_constants';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +12,20 @@ import { BehaviorSubject } from 'rxjs';
 export class MariosyService {
 
   private mariosesUrl = 'api/marioses';  // URL to web api
-
+  
   
   constructor( private http: HttpClient) { }
 
   private marioses$ = new BehaviorSubject<Marios[]>([])
   private mariosesData: Marios[] = [];
+
+  private createdMarioses$ = new BehaviorSubject<Marios[]>([])
+  private createdMariosesData: Marios[] = [];
+  private createdMariosesCount$ = new BehaviorSubject<number>(0)
+
+  private receivedMarioses$ = new BehaviorSubject<Marios[]>([])
+  private receivedMariosesData: Marios[] = [];
+  private receivedMariosesCount$ = new BehaviorSubject<number>(0)
 
   private mariosesDataTest: Marios[] = [ { externalId: "123123",
                           creatorExternalId: "1",
@@ -53,9 +64,18 @@ export class MariosyService {
                             creatorLastName: "Pudzianowski"} ]
 
   fetchMarioses(){
-      //this.http.get('/api/marioses').subscribe(data => console.log('MARIOSES:' + data))
-      this.mariosesData = this.mariosesDataTest;
-      this.marioses$.next([...this.mariosesData])
+     // this.http.get('/api/marioses').subscribe(data => console.log('MARIOSES:' + data))
+
+     // this.mariosesData = this.mariosesDataTest;
+     // this.marioses$.next([...this.mariosesData])
+
+     return this.http.get<Marios[]>(this.mariosesUrl)
+     .subscribe((data) => {
+       this.mariosesData = data;
+      // console.log(this.mariosesData)
+       this.marioses$.next(data)
+     })
+
     }
 
   get marioses() {
@@ -65,5 +85,53 @@ export class MariosyService {
     return this.marioses$.asObservable()
   }
 
- 
+
+  fetchCreatedMarioses(){
+      const url = `api/users/${USER_ID}/marioses/created`
+      return this.http.get<Marios[]>(url)
+      .subscribe((data) => {
+        this.createdMariosesData = data;
+        this.createdMarioses$.next(data)
+        this.createdMariosesCount$.next(data.length)
+      })
+  }
+
+  get createdMarioses() {
+    if(this.createdMariosesData.length === 0) {
+      this.fetchCreatedMarioses()
+    }
+    return this.createdMarioses$.asObservable()
+  }
+
+  get createdMariosesCount(){
+    if(this.createdMariosesData.length === 0) {
+      this.fetchCreatedMarioses()
+    }
+    return this.createdMariosesCount$.asObservable()
+  }
+
+  fetchReceivedMarioses(){
+    const url = `api/users/${USER_ID}/marioses/received`
+    return this.http.get<Marios[]>(url)
+    .subscribe((data) => {
+      this.receivedMariosesData = data;
+      this.receivedMarioses$.next(data)
+      this.receivedMariosesCount$.next(data.length)
+    })
+  }
+
+  get receivedMarioses() {
+    if(this.receivedMariosesData.length === 0) {
+      this.fetchReceivedMarioses()
+    }
+    return this.receivedMarioses$.asObservable()
+  }
+
+  get receivedMariosesCount(){
+    if(this.receivedMariosesData.length === 0) {
+      this.fetchReceivedMarioses()
+    }
+    return this.receivedMariosesCount$.asObservable()
+  }
+
 }
