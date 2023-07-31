@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { MariosyService } from './../../services/mariosy.service';
-import { Marios } from 'src/app/interfaces/marios';
+import { Marios, compareByCreationInstantDesc } from 'src/app/interfaces/marios';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -40,6 +40,8 @@ export class ReceivedSentMariosComponent {
         this.marioses = data
       })
     }
+
+    this.marioses.sort(compareByCreationInstantDesc)
   }
 
   ngOnDestroy() {
