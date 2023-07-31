@@ -28,6 +28,7 @@
     flex-grow: 1;
     box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
     text-decoration: none;
+    width: 510px;
 }
 
 .mariosy-icon{
@@ -44,6 +45,7 @@
     align-items: center;
     border-radius: 0px 5px 5px 0px; 
     text-align: center;
+    width: 50%;
 }
 
 .text-div{
@@ -52,6 +54,7 @@
     align-items: center;
     padding: 0px 18px 0px 18px;
     white-space: pre-line;
+    width: 50%;
 }
 
 
