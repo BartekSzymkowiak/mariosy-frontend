@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Marios } from '../interfaces/marios';
 import { BehaviorSubject } from 'rxjs';
 import { LAST_MARIOS_COUNT, USER_ID } from '../dev_constants';
@@ -18,7 +18,7 @@ export class MariosyService {
     'pink-star',
   ];
 
-  private mariosesUrl = 'api/marioses'; // URL to web api
+  private mariosesUrl = 'api/marioses';
 
   constructor(private http: HttpClient) {}
 

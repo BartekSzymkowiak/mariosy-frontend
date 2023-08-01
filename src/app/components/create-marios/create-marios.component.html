@@ -9,39 +9,40 @@
   </a>
 
   <form class="marios-form">
-    <form>
+  
       <mat-form-field class="example-chip-list">
         <mat-label>Who you want to recognize?</mat-label>
         <mat-chip-grid #chipGrid aria-label="Fruit selection">
-          <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)">
-            {{ fruit }}
-            <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+          <mat-chip-row *ngFor="let receiver of receivers" (removed)="remove(receiver.externalId.toString())">
+            {{ receiver.viewText }} 
+            <button matChipRemove [attr.aria-label]="'remove ' + receiver.externalId" >
               <mat-icon>cancel</mat-icon>
             </button>
           </mat-chip-row>
         </mat-chip-grid>
         <input
           placeholder="New Receiver..."
-          #fruitInput
-          [formControl]="fruitCtrl"
+          #userInput
+          [formControl]="userCtrl"
           [matChipInputFor]="chipGrid"
           [matAutocomplete]="auto"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          (matChipInputTokenEnd)="add($event)"
+      
         />
         <mat-autocomplete
           #auto="matAutocomplete"
           (optionSelected)="selected($event)"
         >
           <mat-option
-            *ngFor="let fruit of filteredFruits | async"
-            [value]="fruit"
+            *ngFor="let user of filteredUsers | async"
+            [value]="user.externalId"
+        
           >
-            {{ fruit }}
+            {{ user.firstName }} {{ user.lastName }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-    </form>
+
 
     <div class="line"></div>
     <div class="category-container">
