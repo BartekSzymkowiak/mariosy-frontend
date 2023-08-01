@@ -2,7 +2,6 @@ import { Component, inject, ElementRef, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { MariosyService } from 'src/app/services/mariosy.service';
 import { Subject, takeUntil, Observable } from 'rxjs';
-import { getIconMariosTypeName } from 'src/app/utils/mariosUtils';
 
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent } from '@angular/material/chips';
@@ -12,6 +11,7 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { FormControl } from '@angular/forms';
 import  {MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { map, startWith } from 'rxjs/operators';
+import { MariosType } from 'src/app/interfaces/mariosType';
 
 
 
@@ -33,7 +33,7 @@ this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
 
               }
  
-  mariosTypes: String[] = [];
+  mariosTypes: MariosType[] = [];
   private destroy$: Subject<void> = new Subject()
 
 
@@ -49,9 +49,6 @@ this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
     this.location.back();
   }
 
-  getIconMariosTypeName(index: number):string{
-    return getIconMariosTypeName(index);
-  }
 
   // fruit
 
@@ -61,7 +58,7 @@ this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
   fruits: string[] = [];
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry', 'aaa', 'bbb','ccc','ddd','eee'];
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement> = {} as ElementRef;
 
   announcer = inject(LiveAnnouncer);
 

@@ -9,6 +9,8 @@ import { MariosType } from '../interfaces/mariosType';
   providedIn: 'root'
 })
 export class MariosyService {
+  
+  private MARIOS_TYPES_ICON_NAMES: string[] = ['green-star', 'blue-star', 'orange-star', 'purple-star', 'yellow-star', 'pink-star'];
 
   private mariosesUrl = 'api/marioses';  // URL to web api
   
@@ -25,9 +27,8 @@ export class MariosyService {
   private receivedMariosesData: Marios[] = [];
   private receivedMariosesCount$ = new BehaviorSubject<number>(0)
 
-  private mariosTypes$ = new BehaviorSubject<String[]>([])
-  private mariosTypesData: String[] = [];
-
+  private mariosTypes$ = new BehaviorSubject<MariosType[]>([])
+  private mariosTypesData: MariosType[] = [];
 
 
   fetchLastMarioses(){
@@ -99,8 +100,13 @@ export class MariosyService {
     const url = `${this.mariosesUrl}/types`
      return this.http.get<String[]>(url)
      .subscribe((data) => {
-       this.mariosTypesData = data;
-       this.mariosTypes$.next(data)
+       
+       this.mariosTypesData = data.map((type, index) => ( {
+        id: index,
+        text: type.toString(),
+        iconName: this.MARIOS_TYPES_ICON_NAMES[index]
+       }) );
+       this.mariosTypes$.next(this.mariosTypesData);
      })
   }
 
@@ -112,4 +118,8 @@ export class MariosyService {
   }
 
 
-}
+
+ }
+
+
+

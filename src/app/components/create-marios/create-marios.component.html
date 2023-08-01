@@ -36,8 +36,8 @@
             <div class="category-text">Select category:</div>
                 <mat-chip-listbox aria-label="Marios types">
                     <mat-chip-option class="type-chips"  *ngFor="let type of mariosTypes; index as typeIndex">
-                        <mat-icon matChipAvatar svgIcon="{{getIconMariosTypeName(typeIndex)}}"></mat-icon>
-                        {{type}} 
+                        <mat-icon matChipAvatar svgIcon="{{type.iconName}}"></mat-icon>
+                        {{type.text}} 
                     </mat-chip-option>
                 </mat-chip-listbox>
         </div>

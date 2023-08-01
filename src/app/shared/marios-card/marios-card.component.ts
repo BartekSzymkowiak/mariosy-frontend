@@ -4,6 +4,7 @@ import { Marios } from 'src/app/interfaces/marios';
 import { MatDialog } from "@angular/material/dialog";
 import { MariosDialogComponent } from '../marios-dialog/marios-dialog.component';
 import { Subject, takeUntil } from 'rxjs';
+import { MariosType } from 'src/app/interfaces/mariosType';
 
 @Component({
   selector: 'app-marios-card',
@@ -17,19 +18,20 @@ export class MariosCardComponent {
   constructor(private matDialog: MatDialog,
               private mariosyService: MariosyService) {}
 
-  mariosTypes: String[] = [];
-  mariosTypeVal: number = 0;
+  mariosType!: MariosType;
+
   private destroy$: Subject<void> = new Subject()
 
   ngOnInit() {
     this.mariosyService.mariosTypes
     .pipe(takeUntil(this.destroy$))
     .subscribe(data => {
-      this.mariosTypes = data
-      this.mariosTypeVal = this.getIndexOfMariosType()
-    })
-
-
+      let mariosTypeOrUndefined = data.find(type => type.text === this.marios.type);
+      if (mariosTypeOrUndefined!== undefined){
+        this.mariosType = mariosTypeOrUndefined;
+      }
+      }
+    )
   }
 
   openDialog(){
@@ -39,10 +41,5 @@ export class MariosCardComponent {
       height: '275px',
     })
   }
-
-  getIndexOfMariosType(){
-    return this.mariosTypes.indexOf(this.marios.type);
-  }
-
   
 }
