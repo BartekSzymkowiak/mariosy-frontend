@@ -40,22 +40,23 @@
   align-self: flex-end;
 }
 
-.category-container {
+.form-row-container {
   padding: 10px 20px 10px 20px;
   display: flex;
   flex-direction: column;
+}
 
+.form-label-text{
   color: #000;
   font-family: Open Sans;
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-}
-
-.category-text {
   padding-bottom: 10px;
 }
+
+
 
 .type-chips {
   border-radius: 5px;
@@ -66,3 +67,8 @@
 .example-chip-list {
   width: 100%;
 }
+
+.example-full-width {
+  width: 100%;
+}
+

@@ -6,10 +6,9 @@ import { MariosyService } from 'src/app/services/mariosy.service';
 import { Subject, takeUntil, Observable } from 'rxjs';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { map, startWith, switchMap, debounceTime } from 'rxjs/operators';
 import { MariosType } from 'src/app/interfaces/mariosType';
@@ -29,8 +28,9 @@ export class CreateMariosComponent {
     private location: Location,
     private mariosyService: MariosyService,
     private userService: UserService
-  ) {
-  }
+  ) {}
+
+  titleFormControl = new FormControl('', [Validators.required]);
 
   mariosTypes: MariosType[] = [];
   private destroy$: Subject<void> = new Subject();
@@ -42,16 +42,19 @@ export class CreateMariosComponent {
         this.mariosTypes = data;
       });
 
-      this.filteredUsers = this.userCtrl.valueChanges.pipe(
-        switchMap((term) => this.userService.searchUsers(term)),
-        debounceTime(500)
-      );
-
-      //  this.userCtrl.valueChanges.pipe(
-      //   switchMap((term) => this.userService.searchUsers(term)),
-      //   debounceTime(500))
-      //   .subscribe((resp : User[]) => {
-      //     this.filteredUsers = resp.filter(e => e.externalId !== "aaa")  });
+    this.userCtrl.valueChanges
+      .pipe(
+        debounceTime(300),
+        switchMap((term) => this.userService.searchUsers(term))
+      )
+      .subscribe((resp: User[]) => {
+        this.filteredUsers = resp.filter(
+          (user) =>
+            !this.receivers.some(
+              (addedReceiver) => addedReceiver.externalId === user.externalId
+            )
+        );
+      });
   }
 
   goBack(): void {
@@ -60,7 +63,7 @@ export class CreateMariosComponent {
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   userCtrl = new FormControl('');
-  filteredUsers: Observable<User[]> = new Observable<User[]>;
+  filteredUsers: User[] = [];
   receivers: Receiver[] = [];
 
   @ViewChild('userInput') userInput: ElementRef<HTMLInputElement> =
@@ -83,5 +86,10 @@ export class CreateMariosComponent {
     });
     this.userInput.nativeElement.value = '';
     this.userCtrl.setValue(null);
+
+    this.receivers.forEach(function (value) {
+      console.log(value.externalId + value.viewText);
+    }); 
   }
+
 }
