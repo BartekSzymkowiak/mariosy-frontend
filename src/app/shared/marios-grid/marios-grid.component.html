@@ -1,6 +1,5 @@
 <mat-grid-list cols="3" gutterSize="20" rowHeight="2:1">
-    <mat-grid-tile
-        *ngFor="let marios of marioses">
-        <app-marios-card [marios]="marios"></app-marios-card>          
-    </mat-grid-tile>
+  <mat-grid-tile *ngFor="let marios of marioses">
+    <app-marios-card [marios]="marios"></app-marios-card>
+  </mat-grid-tile>
 </mat-grid-list>

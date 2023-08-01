@@ -1,53 +1,63 @@
 <div class="page-content-container">
-    <a class="button grey-on-hover" style="align-self: flex-start;" (click)="goBack()">
-        <mat-icon svgIcon="left-arrow"></mat-icon>
-        <span style="padding-left: 5px;">BACK</span>
-    </a>
+  <a
+    class="button grey-on-hover"
+    style="align-self: flex-start"
+    (click)="goBack()"
+  >
+    <mat-icon svgIcon="left-arrow"></mat-icon>
+    <span style="padding-left: 5px">BACK</span>
+  </a>
 
-    <form class="marios-form">
-
-          
-          <form>
-            <mat-form-field class="example-chip-list">
-              <mat-label>Who you want to recognize?</mat-label>
-              <mat-chip-grid #chipGrid aria-label="Fruit selection">
-                <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)">
-                  {{fruit}}
-                  <button matChipRemove [attr.aria-label]="'remove ' + fruit">
-                    <mat-icon>cancel</mat-icon>
-                  </button>
-                </mat-chip-row>
-              </mat-chip-grid>
-              <input placeholder="New Receiver..." #fruitInput [formControl]="fruitCtrl"
-                [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                (matChipInputTokenEnd)="add($event)"/>
-              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                  {{fruit}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          </form>
-        
-        
-        <div class="line"></div>
-        <div class="category-container">
-            <div class="category-text">Select category:</div>
-                <mat-chip-listbox aria-label="Marios types">
-                    <mat-chip-option class="type-chips"  *ngFor="let type of mariosTypes; index as typeIndex">
-                        <mat-icon matChipAvatar svgIcon="{{type.iconName}}"></mat-icon>
-                        {{type.text}} 
-                    </mat-chip-option>
-                </mat-chip-listbox>
-        </div>
-        <div class="line"></div>
-
-        
-        <button class="submit-button grey-on-hover">
-            SEND
-        </button>
+  <form class="marios-form">
+    <form>
+      <mat-form-field class="example-chip-list">
+        <mat-label>Who you want to recognize?</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Fruit selection">
+          <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+            {{ fruit }}
+            <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="New Receiver..."
+          #fruitInput
+          [formControl]="fruitCtrl"
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option
+            *ngFor="let fruit of filteredFruits | async"
+            [value]="fruit"
+          >
+            {{ fruit }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
     </form>
 
-</div>
+    <div class="line"></div>
+    <div class="category-container">
+      <div class="category-text">Select category:</div>
+      <mat-chip-listbox aria-label="Marios types">
+        <mat-chip-option
+          class="type-chips"
+          *ngFor="let type of mariosTypes; index as typeIndex"
+        >
+          <mat-icon matChipAvatar svgIcon="{{ type.iconName }}"></mat-icon>
+          {{ type.text }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+    <div class="line"></div>
 
+    <button class="submit-button grey-on-hover">SEND</button>
+  </form>
+</div>

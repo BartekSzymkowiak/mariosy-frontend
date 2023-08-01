@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MariosGridComponent } from './marios-grid.component';
 
 describe('MariosGridComponent', () => {
@@ -8,7 +7,7 @@ describe('MariosGridComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MariosGridComponent]
+      declarations: [MariosGridComponent],
     });
     fixture = TestBed.createComponent(MariosGridComponent);
     component = fixture.componentInstance;

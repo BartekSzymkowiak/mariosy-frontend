@@ -1,21 +1,26 @@
 <div class="page-content-container">
+  <div id="info-cards-container">
+    <app-info-card
+      [text]="'RECEIVED\nMARIOS:'"
+      [route]="'/received'"
+      [number]="receivedMariosesCount"
+    ></app-info-card>
+    <app-info-card
+      [text]="'SENT\nMARIOS:'"
+      [route]="'/sent'"
+      [number]="createdMariosesCount"
+    ></app-info-card>
+  </div>
 
-    <div id="info-cards-container">
-        <app-info-card [text]="'RECEIVED\nMARIOS:'" [route]="'/received'" [number]=receivedMariosesCount></app-info-card>
-        <app-info-card [text]="'SENT\nMARIOS:'" [route]="'/sent'" [number]=createdMariosesCount></app-info-card>
-    </div>
+  <a
+    class="button grey-on-hover"
+    style="align-self: flex-end"
+    routerLink="/create"
+  >
+    <span style="padding-right: 5px">ADD MARIOS</span>
+    <mat-icon svgIcon="right-arrow"></mat-icon>
+  </a>
 
-    <a class="button grey-on-hover" style="align-self: flex-end;" routerLink="/create">
-        <span style="padding-right: 5px;">ADD MARIOS</span>
-        <mat-icon svgIcon="right-arrow"></mat-icon>
-    </a>
-       
-    <h2 class="white-font">LAST MARIOS:</h2>
-    <app-marios-grid [marioses]="lastMarioses"></app-marios-grid>
-
- 
+  <h2 class="white-font">LAST MARIOS:</h2>
+  <app-marios-grid [marioses]="lastMarioses"></app-marios-grid>
 </div>
-
-
-
-

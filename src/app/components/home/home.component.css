@@ -1,10 +1,10 @@
-#info-cards-container{
-    display: flex;
-    flex-flow: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: stretch;
-    column-gap: 18px;
-    align-content: stretch;
-    margin-bottom: 36px;
+#info-cards-container {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  column-gap: 18px;
+  align-content: stretch;
+  margin-bottom: 36px;
 }

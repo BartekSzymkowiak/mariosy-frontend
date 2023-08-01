@@ -1,63 +1,70 @@
-
-.info-font{
-    color: #000;
-    font-family: Open Sans;
-    font-size: 35px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    letter-spacing: 3.85px;
+.info-font {
+  color: #000;
+  font-family: Open Sans;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 3.85px;
 }
 
-.number-font{
-    color: #FCCF00;
-    font-family: Open Sans;
-    font-size: 100px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    -webkit-text-stroke: 4px black;
-    letter-spacing: 5px;
+.number-font {
+  color: #fccf00;
+  font-family: Open Sans;
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  -webkit-text-stroke: 4px black;
+  letter-spacing: 5px;
 }
 
+.info-card-item {
+  display: flex;
+  border-radius: 5px;
+  background-color: #fff;
+  flex-grow: 1;
+  box-shadow: 6px 9px 4px rgba(0, 0, 0, 0.25);
 
-.info-card-item{
-    display: flex;
-    border-radius: 5px;
-    background-color: #FFF;
-    flex-grow: 1;
-    box-shadow: 6px 9px 4px rgba(0, 0, 0, 0.25);
-
-    text-decoration: none;
-    width: 510px;
+  text-decoration: none;
+  width: 510px;
 }
 
-.mariosy-icon{
-    flex-direction: row;
-    width: 203px;
-    height: 203px;
-    opacity: 0.5;  
+.mariosy-icon {
+  flex-direction: row;
+  width: 203px;
+  height: 203px;
+  opacity: 0.5;
 }
 
-.icon-div{
-    display: flex;
-    padding: 19px 21px 37px 21px;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 0px 5px 5px 0px; 
-    text-align: center;
-    width: 50%;
+.icon-div {
+  display: flex;
+  padding: 19px 21px 37px 21px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0px 5px 5px 0px;
+  text-align: center;
+  width: 50%;
 }
 
-.text-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 18px 0px 18px;
-    white-space: pre-line;
-    width: 50%;
+.text-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 18px 0px 18px;
+  white-space: pre-line;
+  width: 50%;
 }
 
-
-.img-holder {position: relative; display: inline-block;}
-.img-holder p {position: absolute; top: 0%; left: 0; right: 0; transform: translate(0, -50%); text-align: center;}
+.img-holder {
+  position: relative;
+  display: inline-block;
+}
+.img-holder p {
+  position: absolute;
+  top: 0%;
+  left: 0;
+  right: 0;
+  transform: translate(0, -50%);
+  text-align: center;
+}

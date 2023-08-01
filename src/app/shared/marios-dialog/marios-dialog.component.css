@@ -1,73 +1,69 @@
-.marios-modal{
-    display: flex;   
-    flex-direction:  column; 
+.marios-modal {
+  display: flex;
+  flex-direction: column;
 }
 
-button{
-    align-self: flex-end;
- }
- 
-
-.marios-modal-content{
-    display: flex;   
-    flex-direction:  column; 
+button {
+  align-self: flex-end;
 }
 
-.first-row{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
- 
+.marios-modal-content {
+  display: flex;
+  flex-direction: column;
 }
 
-.from-text{
-    color: #EA808E;
-    font-family: Open Sans;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 0px 0px;
+.first-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.type-text{
-    color: #000;
-    font-family: Open Sans;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 0px 0px 0px 0px;
+.from-text {
+  color: #ea808e;
+  font-family: Open Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0px 0px;
+}
 
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    
+.type-text {
+  color: #000;
+  font-family: Open Sans;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0px 0px 0px 0px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .icon-size {
-    font-size: 20px;
-    height: 20px;
-    width: 20px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
 }
 
-.title-text{
-    color: #494949;
-    font-family: Open Sans;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 5px 0px 18px 0px;
+.title-text {
+  color: #494949;
+  font-family: Open Sans;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 5px 0px 18px 0px;
 }
 
-.comment-text{
-    color: #A1A1A1;
-    font-family: Open Sans;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 0px 0px 0px 0px;
-   
+.comment-text {
+  color: #a1a1a1;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0px 0px 0px 0px;
 }

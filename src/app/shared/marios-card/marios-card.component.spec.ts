@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MariosCardComponent } from './marios-card.component';
 
 describe('MariosCardComponent', () => {
@@ -8,7 +7,7 @@ describe('MariosCardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MariosCardComponent]
+      declarations: [MariosCardComponent],
     });
     fixture = TestBed.createComponent(MariosCardComponent);
     component = fixture.componentInstance;

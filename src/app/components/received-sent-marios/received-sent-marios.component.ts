@@ -9,39 +9,39 @@ import { compareByCreationInstantDesc } from 'src/app/utils/mariosUtils';
 @Component({
   selector: 'app-received-sent-marios',
   templateUrl: './received-sent-marios.component.html',
-  styleUrls: ['./received-sent-marios.component.css']
+  styleUrls: ['./received-sent-marios.component.css'],
 })
 export class ReceivedSentMariosComponent {
-  constructor(private location: Location, 
-              private mariosyService: MariosyService,
-              private router: Router){}
+  constructor(
+    private location: Location,
+    private mariosyService: MariosyService,
+    private router: Router
+  ) {}
 
   gridTitle: string = '';
   marioses: Marios[] = [];
-  private destroy$: Subject<void> = new Subject()
-
+  private destroy$: Subject<void> = new Subject();
 
   ngOnInit() {
-    if (this.router.url==='/received'){
-      this.gridTitle = 'RECEIVED MARIOS:'
+    if (this.router.url === '/received') {
+      this.gridTitle = 'RECEIVED MARIOS:';
 
       this.mariosyService.receivedMarioses
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.marioses = data
-      })
-
-    } else{
-      this.gridTitle = 'SENT MARIOS:'
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((data) => {
+          this.marioses = data;
+        });
+    } else {
+      this.gridTitle = 'SENT MARIOS:';
 
       this.mariosyService.createdMarioses
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.marioses = data
-      })
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((data) => {
+          this.marioses = data;
+        });
     }
 
-    this.marioses.sort(compareByCreationInstantDesc)
+    this.marioses.sort(compareByCreationInstantDesc);
   }
 
   ngOnDestroy() {
@@ -52,7 +52,4 @@ export class ReceivedSentMariosComponent {
   goBack(): void {
     this.location.back();
   }
-
 }
-
-

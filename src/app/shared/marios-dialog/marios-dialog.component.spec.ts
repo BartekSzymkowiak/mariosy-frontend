@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MariosDialogComponent } from './marios-dialog.component';
 
 describe('MariosDialogComponent', () => {
@@ -8,7 +7,7 @@ describe('MariosDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MariosDialogComponent]
+      declarations: [MariosDialogComponent],
     });
     fixture = TestBed.createComponent(MariosDialogComponent);
     component = fixture.componentInstance;

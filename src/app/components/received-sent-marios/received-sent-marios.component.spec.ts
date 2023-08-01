@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ReceivedSentMariosComponent } from './received-sent-marios.component';
 
 describe('ReceivedSentMariosComponent', () => {
@@ -8,7 +7,7 @@ describe('ReceivedSentMariosComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ReceivedSentMariosComponent]
+      declarations: [ReceivedSentMariosComponent],
     });
     fixture = TestBed.createComponent(ReceivedSentMariosComponent);
     component = fixture.componentInstance;

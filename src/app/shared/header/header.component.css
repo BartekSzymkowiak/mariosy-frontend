@@ -1,14 +1,14 @@
-header{
-    display: flex;
-    flex-direction: column;
-    height: 88px;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 18px;
+header {
+  display: flex;
+  flex-direction: column;
+  height: 88px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
 }
 
-.mariosy_logo{
+.mariosy_logo {
   max-width: 100%;
   height: auto;
   padding: 18px 0px;
@@ -16,8 +16,8 @@ header{
 }
 
 #line {
-    display: flex;
-    order: 1;
-    width: 1037px;
-    border: 2px solid #FFF;
-  }
+  display: flex;
+  order: 1;
+  width: 1037px;
+  border: 2px solid #fff;
+}

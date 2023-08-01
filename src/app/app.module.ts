@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -9,8 +9,8 @@ import { InfoCardComponent } from './components/info-card/info-card.component';
 import { MariosCardComponent } from './shared/marios-card/marios-card.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MariosDialogComponent } from './shared/marios-dialog/marios-dialog.component';
-import { MatIconModule } from "@angular/material/icon";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { CreateMariosComponent } from './components/create-marios/create-marios.component';
@@ -22,7 +22,6 @@ import { NgFor, AsyncPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +32,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MariosDialogComponent,
     CreateMariosComponent,
     MariosGridComponent,
-    ReceivedSentMariosComponent
+    ReceivedSentMariosComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +50,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    AsyncPipe
+    AsyncPipe,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
