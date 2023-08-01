@@ -11,7 +11,7 @@ body {
     border-radius: 5px;
     border: 3px solid #FFF;
     background: #FFDF24;
-
+  
     color: #000;
     font-size: 17px;
     font-style: normal;
@@ -27,8 +27,8 @@ body {
     align-items: center;
     justify-content: center;
     width: max-content;     
-
 }
+
 html, body { height: 100%; }
 body { margin: 0;  font-family: Open Sans; }
 

@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { MariosyService } from './../../services/mariosy.service';
-import { Marios, compareByCreationInstantDesc } from 'src/app/interfaces/marios';
+import { Marios } from 'src/app/interfaces/marios';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { compareByCreationInstantDesc } from 'src/app/utils/mariosUtils';
 
 @Component({
   selector: 'app-received-sent-marios',

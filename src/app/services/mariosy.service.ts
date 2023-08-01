@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Marios } from '../interfaces/marios';
 import { BehaviorSubject } from 'rxjs';
 import { LAST_MARIOS_COUNT, USER_ID } from '../dev_constants';
-
-
+import { MariosType } from '../interfaces/mariosType';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,6 @@ import { LAST_MARIOS_COUNT, USER_ID } from '../dev_constants';
 export class MariosyService {
 
   private mariosesUrl = 'api/marioses';  // URL to web api
-  
   
   constructor( private http: HttpClient) { }
 
@@ -27,41 +25,10 @@ export class MariosyService {
   private receivedMariosesData: Marios[] = [];
   private receivedMariosesCount$ = new BehaviorSubject<number>(0)
 
-  // private mariosesDataTest: Marios[] = [ { externalId: "123123",
-  //                         creatorExternalId: "1",
-  //                         receiversExternalIds: ["2","3"],
-  //                         title: "Marios 4 you",
-  //                         comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
-  //                         type: "MARIOS1",
-  //                         creatorFirstName: "Robert",
-  //                         creatorLastName: "Pudzianowski"},
-  //                         {
-  //                         externalId: "123124",
-  //                         creatorExternalId: "1",
-  //                         receiversExternalIds: ["2","3"],
-  //                         title: "Marios 4 you",
-  //                         comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
-  //                         type: "MARIOS3",
-  //                         creatorFirstName: "Robert",
-  //                         creatorLastName: "Pudzianowski"},
-  //                         {
-  //                           externalId: "123124",
-  //                           creatorExternalId: "3",
-  //                           receiversExternalIds: ["6","1"],
-  //                           title: "Marios 4 you",
-  //                           comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
-  //                           type: "MARIOS2",
-  //                           creatorFirstName: "Robert",
-  //                           creatorLastName: "Pudzianowski"},
-  //                         {
-  //                           externalId: "123124",
-  //                           creatorExternalId: "2",
-  //                           receiversExternalIds: ["1","7"],
-  //                           title: "Marios 4 you",
-  //                           comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero arcu, auctor sed nisl vitae, pretium eleifend ipsum. Integer sed lacinia velit. Maecenas interdum nulla vel vulputate sagittis. Integer ac maximus augue. Curabitur dictum turpis mole.",
-  //                           type: "MARIOS1",
-  //                           creatorFirstName: "Robert",
-  //                           creatorLastName: "Pudzianowski"} ]
+  private mariosTypes$ = new BehaviorSubject<String[]>([])
+  private mariosTypesData: String[] = [];
+
+
 
   fetchLastMarioses(){
     const url = `${this.mariosesUrl}?page=0&size=${LAST_MARIOS_COUNT}`
@@ -70,7 +37,6 @@ export class MariosyService {
        this.lastMariosesData = data;
        this.lastMarioses$.next(data)
      })
-
     }
 
   get lastMarioses() {
@@ -128,5 +94,22 @@ export class MariosyService {
     }
     return this.receivedMariosesCount$.asObservable()
   }
+
+  fetchMariosTypes(){
+    const url = `${this.mariosesUrl}/types`
+     return this.http.get<String[]>(url)
+     .subscribe((data) => {
+       this.mariosTypesData = data;
+       this.mariosTypes$.next(data)
+     })
+  }
+
+  get mariosTypes(){
+    if(this.mariosTypesData.length === 0) {
+      this.fetchMariosTypes()
+    }
+    return this.mariosTypes$.asObservable()
+  }
+
 
 }

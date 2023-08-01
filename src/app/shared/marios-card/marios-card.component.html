@@ -3,10 +3,19 @@
 
    <div class="headers-grid-container">
 
-      <mat-icon svgIcon="person-sharp" class="grid-item icon-size"></mat-icon>
+      <mat-icon svgIcon="person-sharp-pink" class="grid-item icon-size"></mat-icon>
       <h2 class="from-text grid-item">From: {{marios.creatorFirstName}} {{marios.creatorLastName}}</h2>
    
-      <mat-icon svgIcon="green-star" class="grid-item icon-size"></mat-icon>
+
+      <div [ngSwitch]=mariosTypeVal>
+         <mat-icon *ngSwitchCase=0 svgIcon="green-star" class="grid-item icon-size"></mat-icon>
+         <mat-icon *ngSwitchCase=1 svgIcon="blue-star" class="grid-item icon-size"></mat-icon>
+         <mat-icon *ngSwitchCase=2 svgIcon="orange-star" class="grid-item icon-size"></mat-icon>
+         <mat-icon *ngSwitchCase=3 svgIcon="purple-star" class="grid-item icon-size"></mat-icon>
+         <mat-icon *ngSwitchCase=4 svgIcon="yellow-star" class="grid-item icon-size"></mat-icon>
+         <mat-icon *ngSwitchCase=5 svgIcon="pink-star" class="grid-item icon-size"></mat-icon>
+         <mat-icon *ngSwitchDefault svgIcon="green-star" class="grid-item icon-size"></mat-icon>
+      </div>
       <h2 class="type-text grid-item">{{marios.type}}</h2>
       
       <h2 class="title-text grid-item">T:</h2>

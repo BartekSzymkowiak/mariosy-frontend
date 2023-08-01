@@ -16,6 +16,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { CreateMariosComponent } from './components/create-marios/create-marios.component';
 import { MariosGridComponent } from './shared/marios-grid/marios-grid.component';
 import { ReceivedSentMariosComponent } from './components/received-sent-marios/received-sent-marios.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgFor, AsyncPipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +44,14 @@ import { ReceivedSentMariosComponent } from './components/received-sent-marios/r
     MatIconModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    NgFor,
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    AsyncPipe
   ],
   providers: [],
   bootstrap: [AppComponent]

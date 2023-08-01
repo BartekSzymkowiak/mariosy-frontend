@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,24 +12,53 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'mariosy-frontend';
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
-    iconRegistry.addSvgIcon(
-      'right-arrow',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/211621_c_right_arrow_icon_1.svg'));
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer){}
 
-    iconRegistry.addSvgIcon(
+  ngOnInit(){
+    this.registerIcons()
+  }
+
+  registerIcons() {
+      this.iconRegistry.addSvgIcon(
+        'right-arrow',
+        this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/right_arrow.svg'));
+
+      this.iconRegistry.addSvgIcon(
         'left-arrow',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/icons/Vector_left.svg'));
+        this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/left_arrow.svg'));
 
-    iconRegistry.addSvgIcon(
-          'green-star',
-          sanitizer.bypassSecurityTrustResourceUrl('assets/icons/3841826_favorite_interface_multimedia_star_icon_1.svg'));
-  
-    iconRegistry.addSvgIcon(
-          'person-sharp',
-          sanitizer.bypassSecurityTrustResourceUrl('assets/icons/9035899_person_sharp_icon_1.svg'));
-  
-        }
+      this.iconRegistry.addSvgIcon(
+        'green-star',
+        this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/star_green.svg'));
 
- 
+      this.iconRegistry.addSvgIcon(
+          'blue-star',
+          this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/star_blue.svg'));
+
+      this.iconRegistry.addSvgIcon(
+            'orange-star',
+            this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/star_orange.svg'));
+
+      this.iconRegistry.addSvgIcon(
+            'purple-star',
+            this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/star_purple.svg'));   
+
+      this.iconRegistry.addSvgIcon(
+        'yellow-star',
+        this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/star_yellow.svg'));   
+
+      this.iconRegistry.addSvgIcon(
+          'pink-star',
+          this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/star_pink.svg'));  
+
+      this.iconRegistry.addSvgIcon(
+      'person-sharp-pink',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/person_sharp_icon_pink.svg'));
+
+      this.iconRegistry.addSvgIcon(
+      'person-sharp-yellow',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/person_sharp_icon_yellow.svg'));
+    }
+
+
 }
