@@ -2,6 +2,8 @@ import { MariosyService } from './../../services/mariosy.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Marios } from 'src/app/interfaces/marios';
 import { Subject, takeUntil } from 'rxjs';
+import { compareByCreationInstantDesc } from 'src/app/utils/mariosUtils';
+import { LAST_MARIOS_COUNT } from 'src/app/dev_constants';
 
 export interface Tile {
   color: string;
@@ -25,10 +27,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private mariosyService: MariosyService) {}
 
   ngOnInit() {
-    this.mariosyService.lastMarioses
+    this.mariosyService.userLastMarioses
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
-        this.lastMarioses = data;
+        this.lastMarioses = [...data[0],...data[1]].sort(compareByCreationInstantDesc).slice(0, LAST_MARIOS_COUNT);
       });
 
     this.mariosyService.createdMariosesCount

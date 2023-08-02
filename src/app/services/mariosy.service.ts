@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Marios, MariosPayload } from '../interfaces/marios';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, zip } from 'rxjs';
 import { LAST_MARIOS_COUNT, USER_ID } from '../dev_constants';
 import { MariosType } from '../interfaces/mariosType';
 
@@ -49,6 +49,17 @@ export class MariosyService {
       this.fetchLastMarioses();
     }
     return this.lastMarioses$.asObservable();
+  }
+
+  get userLastMarioses() {
+    if (this.createdMariosesData.length === 0) {
+      this.fetchCreatedMarioses();
+    }
+    if (this.receivedMariosesData.length === 0) {
+      this.fetchReceivedMarioses();
+    }
+
+    return zip(this.createdMarioses$, this.receivedMarioses$)
   }
 
   fetchCreatedMarioses() {
@@ -119,8 +130,9 @@ export class MariosyService {
   addMarios(payload: MariosPayload) {
     return this.http.post<Marios>(this.mariosesUrl, payload)
                     .subscribe((data) => {
-                      console.log(data)
-            
+                      this.createdMariosesData.push(data);
+                      this.createdMarioses$.next(this.createdMariosesData);
+                      this.createdMariosesCount$.next(this.createdMariosesData.length); 
                     })
   }
 

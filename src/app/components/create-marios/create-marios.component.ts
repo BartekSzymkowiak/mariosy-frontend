@@ -14,6 +14,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { map, startWith, switchMap, debounceTime } from 'rxjs/operators';
 import { MariosType } from 'src/app/interfaces/mariosType';
 import { USER_ID } from 'src/app/dev_constants';
+import { Router } from '@angular/router';
 
 interface Receiver {
   externalId: string;
@@ -29,25 +30,24 @@ export class CreateMariosComponent {
   constructor(
     private location: Location,
     private mariosyService: MariosyService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   mariosForm: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    comment: new FormControl(''),
+    title: new FormControl('', Validators.required),
+    comment: new FormControl('', Validators.required),
     receiversIds: new FormControl([], Validators.required),
-    selectedCategory: new FormControl(null, Validators.required)
+    selectedCategory: new FormControl(null, Validators.required),
   });
-
 
   mariosTypes: MariosType[] = [];
   private destroy$: Subject<void> = new Subject();
 
   ngOnInit() {
-    this.mariosyService.mariosTypes
-      .subscribe((data) => {
-        this.mariosTypes = data;
-      });
+    this.mariosyService.mariosTypes.subscribe((data) => {
+      this.mariosTypes = data;
+    });
 
     this.userCtrl.valueChanges
       .pipe(
@@ -58,8 +58,8 @@ export class CreateMariosComponent {
         this.filteredUsers = resp.filter(
           (user) =>
             !this.receivers.some(
-              (addedReceiver) => addedReceiver.externalId === user.externalId
-            )
+              (addedReceiver) => addedReceiver.externalId === user.externalId 
+            ) && user.externalId !== USER_ID
         );
       });
   }
@@ -98,38 +98,31 @@ export class CreateMariosComponent {
     this.userCtrl.setValue(null);
   }
 
-  private setReceiversIdsAndValidate(){
-    this.mariosForm.controls['receiversIds'].setValue(this.receivers.map(r => r.externalId))
+  private setReceiversIdsAndValidate() {
+    this.mariosForm.controls['receiversIds'].setValue(
+      this.receivers.map((r) => r.externalId)
+    );
     this.mariosForm.controls['receiversIds'].updateValueAndValidity();
   }
 
-  changeSelectedType(type: MariosType){
+  changeSelectedType(type: MariosType) {
     this.mariosForm.controls['selectedCategory'].setValue(type.id);
     this.mariosForm.controls['selectedCategory'].updateValueAndValidity();
   }
 
   onSubmit(): void {
-
     this.mariosForm.markAllAsTouched();
-
-    if (this.mariosForm.valid){
-     
+    if (this.mariosForm.valid) {
       let mariosPayload: MariosPayload = {
         creatorExternalId: USER_ID,
         receiversExternalIds: this.mariosForm.controls['receiversIds'].value,
         title: this.mariosForm.controls['title'].value,
         comment: this.mariosForm.controls['comment'].value,
         type: this.mariosForm.controls['selectedCategory'].value,
-      }
-      console.log(mariosPayload);
+      };
       this.mariosyService.addMarios(mariosPayload);
       this.mariosForm.reset();
+      this.router.navigate(['/home'])
     }
-    else{
-      
-    }    
-    
   }
-
-
 }
