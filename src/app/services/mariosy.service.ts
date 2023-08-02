@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Marios } from '../interfaces/marios';
+import { Marios, MariosPayload } from '../interfaces/marios';
 import { BehaviorSubject } from 'rxjs';
 import { LAST_MARIOS_COUNT, USER_ID } from '../dev_constants';
 import { MariosType } from '../interfaces/mariosType';
@@ -103,7 +103,7 @@ export class MariosyService {
       this.mariosTypesData = data.map((type, index) => ({
         id: index,
         text: type.toString(),
-        iconName: this.MARIOS_TYPES_ICON_NAMES[index],
+        iconName: this.MARIOS_TYPES_ICON_NAMES[index]
       }));
       this.mariosTypes$.next(this.mariosTypesData);
     });
@@ -115,4 +115,14 @@ export class MariosyService {
     }
     return this.mariosTypes$.asObservable();
   }
+
+  addMarios(payload: MariosPayload) {
+    return this.http.post<Marios>(this.mariosesUrl, payload)
+                    .subscribe((data) => {
+                      console.log(data)
+            
+                    })
+  }
+
+
 }

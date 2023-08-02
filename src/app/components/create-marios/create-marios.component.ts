@@ -1,3 +1,4 @@
+import { MariosPayload } from './../../interfaces/marios';
 import { User } from './../../interfaces/user';
 import { UserService } from './../../services/user.service';
 import { Component, inject, ElementRef, ViewChild } from '@angular/core';
@@ -8,10 +9,11 @@ import { Subject, takeUntil, Observable } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { map, startWith, switchMap, debounceTime } from 'rxjs/operators';
 import { MariosType } from 'src/app/interfaces/mariosType';
+import { USER_ID } from 'src/app/dev_constants';
 
 interface Receiver {
   externalId: string;
@@ -30,14 +32,19 @@ export class CreateMariosComponent {
     private userService: UserService
   ) {}
 
-  titleFormControl = new FormControl('', [Validators.required]);
+  mariosForm: FormGroup = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    comment: new FormControl(''),
+    receiversIds: new FormControl([], Validators.required),
+    selectedCategory: new FormControl(null, Validators.required)
+  });
+
 
   mariosTypes: MariosType[] = [];
   private destroy$: Subject<void> = new Subject();
 
   ngOnInit() {
     this.mariosyService.mariosTypes
-      .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.mariosTypes = data;
       });
@@ -75,7 +82,7 @@ export class CreateMariosComponent {
     const index = this.receivers.findIndex((e) => e.externalId === userId);
     if (index >= 0) {
       this.receivers.splice(index, 1);
-      this.announcer.announce(`Removed ${userId}`);
+      this.setReceiversIdsAndValidate();
     }
   }
 
@@ -84,12 +91,45 @@ export class CreateMariosComponent {
       externalId: event.option.value,
       viewText: event.option.viewValue,
     });
+
+    this.setReceiversIdsAndValidate();
+
     this.userInput.nativeElement.value = '';
     this.userCtrl.setValue(null);
-
-    this.receivers.forEach(function (value) {
-      console.log(value.externalId + value.viewText);
-    }); 
   }
+
+  private setReceiversIdsAndValidate(){
+    this.mariosForm.controls['receiversIds'].setValue(this.receivers.map(r => r.externalId))
+    this.mariosForm.controls['receiversIds'].updateValueAndValidity();
+  }
+
+  changeSelectedType(type: MariosType){
+    this.mariosForm.controls['selectedCategory'].setValue(type.id);
+    this.mariosForm.controls['selectedCategory'].updateValueAndValidity();
+  }
+
+  onSubmit(): void {
+
+    this.mariosForm.markAllAsTouched();
+
+    if (this.mariosForm.valid){
+     
+      let mariosPayload: MariosPayload = {
+        creatorExternalId: USER_ID,
+        receiversExternalIds: this.mariosForm.controls['receiversIds'].value,
+        title: this.mariosForm.controls['title'].value,
+        comment: this.mariosForm.controls['comment'].value,
+        type: this.mariosForm.controls['selectedCategory'].value,
+      }
+      console.log(mariosPayload);
+      this.mariosyService.addMarios(mariosPayload);
+      this.mariosForm.reset();
+    }
+    else{
+      
+    }    
+    
+  }
+
 
 }

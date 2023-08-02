@@ -9,3 +9,11 @@ export interface Marios {
   creatorLastName: String;
   creationInstant: Date;
 }
+
+export interface MariosPayload {
+  creatorExternalId: string;
+  receiversExternalIds: string[];
+  title: string;
+  comment: string;
+  type: number;
+}

@@ -8,13 +8,14 @@
     <span style="padding-left: 5px">BACK</span>
   </a>
 
-  <form class="marios-form">
+  <form class="marios-form" [formGroup]="mariosForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-chip-list">
       <mat-label>Who you want to recognize?</mat-label>
-      <mat-chip-grid #chipGrid aria-label="Fruit selection">
+      <mat-chip-grid #chipGrid aria-label="Receiver selection" formControlName="receiversIds">
         <mat-chip-row
           *ngFor="let receiver of receivers"
           (removed)="remove(receiver.externalId.toString())"
+          [value]="receiver.externalId"
         >
           {{ receiver.viewText }}
           <button
@@ -49,23 +50,28 @@
     <div class="line"></div>
     <div class="form-row-container">
       <div class="form-label-text">Select category:</div>
-      <mat-chip-listbox aria-label="Marios types">
+      <mat-chip-listbox aria-label="Marios types" formControlName="selectedCategory">
         <mat-chip-option
           class="type-chips"
           *ngFor="let type of mariosTypes; index as typeIndex"
+          (click)="changeSelectedType(type)"
+          [value]="type.id"
         >
           <mat-icon matChipAvatar svgIcon="{{ type.iconName }}"></mat-icon>
           {{ type.text }}
         </mat-chip-option>
+        <mat-error *ngIf="mariosForm.controls['selectedCategory'].hasError('required') && mariosForm.controls['selectedCategory'].touched">
+          Category is <strong>required</strong>
+        </mat-error>
       </mat-chip-listbox>
     </div>
 
     <div class="line"></div>
     <div class="form-row-container">
       <div class=" form-label-text">Title:</div>
-      <mat-form-field class="example-full-width">
-        <input type="email" matInput [formControl]="titleFormControl" placeholder="Enter marios title">
-        <mat-error *ngIf="titleFormControl.hasError('required')">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input type="email" matInput formControlName="title" placeholder="Enter marios title">
+        <mat-error *ngIf="mariosForm.controls['title'].hasError('required')">
           Title is <strong>required</strong>
         </mat-error>
       </mat-form-field>
@@ -73,13 +79,13 @@
     <div class="line"></div>
     <div class="form-row-container">
       <div class=" form-label-text">Comment:</div>
-      <mat-form-field class="example-full-width">
-        <input matInput #message maxlength="255">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput #message maxlength="255" formControlName="comment">
         <mat-hint align="end">{{message.value.length}} / 255</mat-hint>
       </mat-form-field>
     </div>
 
-
-    <button class="submit-button grey-on-hover">SEND</button>
+    <button class="submit-button grey-on-hover" type="submit">SEND</button>
   </form>
 </div>
+
