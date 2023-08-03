@@ -4,6 +4,7 @@ import { Marios, MariosPayload } from '../interfaces/marios';
 import { BehaviorSubject, zip } from 'rxjs';
 import { LAST_MARIOS_COUNT, USER_ID } from '../dev_constants';
 import { MariosType } from '../interfaces/mariosType';
+import { StringDictionary } from '../interfaces/stringDictionary';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +19,19 @@ export class MariosyService {
     'pink-star',
   ];
 
+  private MARIOS_TYPES_TEXT: StringDictionary={
+    "MARIOS_T1": "Thank You",
+    "MARIOS_T2": "Impressive",
+    "MARIOS_T3": "Exceptional",
+    "MARIOS_T4": "Good Job",
+    "MARIOS_T5": "WOW!",
+    "MARIOS_T6": "I’m proud",
+  }
+
   private mariosesUrl = 'api/marioses';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   private lastMarioses$ = new BehaviorSubject<Marios[]>([]);
   private lastMariosesData: Marios[] = [];
@@ -113,7 +124,8 @@ export class MariosyService {
     return this.http.get<String[]>(url).subscribe((data) => {
       this.mariosTypesData = data.map((type, index) => ({
         id: index,
-        text: type.toString(),
+        text: this.MARIOS_TYPES_TEXT[type.toString()],
+        value: type.toString(),
         iconName: this.MARIOS_TYPES_ICON_NAMES[index]
       }));
       this.mariosTypes$.next(this.mariosTypesData);

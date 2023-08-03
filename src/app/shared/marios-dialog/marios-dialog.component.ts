@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Marios } from 'src/app/interfaces/marios';
+import { MariosDialog } from 'src/app/interfaces/mariosDialog';
 
 @Component({
   selector: 'app-marios-dialog',
@@ -10,7 +10,8 @@ import { Marios } from 'src/app/interfaces/marios';
 export class MariosDialogComponent {
   constructor(
     private dialogRef: MatDialogRef<MariosDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Marios
+    @Inject(MAT_DIALOG_DATA) public data: MariosDialog,
+
   ) {}
 
   close(): void {

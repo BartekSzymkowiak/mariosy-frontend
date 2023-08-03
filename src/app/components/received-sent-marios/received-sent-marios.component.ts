@@ -4,7 +4,7 @@ import { MariosyService } from './../../services/mariosy.service';
 import { Marios } from 'src/app/interfaces/marios';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
-import { compareByCreationInstantDesc } from 'src/app/utils/mariosUtils';
+import { compareByCreationTimestampDesc } from 'src/app/utils/mariosUtils';
 
 @Component({
   selector: 'app-received-sent-marios',
@@ -41,7 +41,7 @@ export class ReceivedSentMariosComponent {
         });
     }
 
-    this.marioses.sort(compareByCreationInstantDesc);
+    this.marioses.sort(compareByCreationTimestampDesc);
   }
 
   ngOnDestroy() {

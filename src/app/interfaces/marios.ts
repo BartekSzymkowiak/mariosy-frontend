@@ -7,7 +7,7 @@ export interface Marios {
   type: string;
   creatorFirstName: String;
   creatorLastName: String;
-  creationInstant: Date;
+  creationTimestamp: Date;
 }
 
 export interface MariosPayload {

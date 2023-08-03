@@ -46,6 +46,14 @@
   flex-direction: column;
 }
 
+.form-row-container-row-direction {
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+
 .form-label-text{
   color: #000;
   font-family: Open Sans;
@@ -71,4 +79,14 @@
 .example-full-width {
   width: 100%;
 }
+
+.icon-person {
+  font-size: 23px;
+  height: 23px;
+  width: 23px;
+  color: rgba(252, 207, 0, 1)
+
+}
+
+
 

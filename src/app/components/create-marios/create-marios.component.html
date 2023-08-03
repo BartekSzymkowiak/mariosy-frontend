@@ -9,47 +9,51 @@
   </a>
 
   <form class="marios-form" [formGroup]="mariosForm" (ngSubmit)="onSubmit()">
-    <mat-form-field class="example-chip-list">
-      <mat-label>Who you want to recognize?</mat-label>
-      <mat-chip-grid
-        #chipGrid
-        aria-label="Receiver selection"
-        formControlName="receiversIds"
-      >
-        <mat-chip-row
-          *ngFor="let receiver of receivers"
-          (removed)="remove(receiver.externalId.toString())"
-          [value]="receiver.externalId"
+    <div class="form-row-container-row-direction">
+      <mat-icon class="icon-person">person-sharp-yellow</mat-icon>
+
+      <mat-form-field class="example-chip-list">
+        <mat-label>Who you want to recognize?</mat-label>
+        <mat-chip-grid
+          #chipGrid
+          aria-label="Receiver selection"
+          formControlName="receiversIds"
         >
-          {{ receiver.viewText }}
-          <button
-            matChipRemove
-            [attr.aria-label]="'remove ' + receiver.externalId"
+          <mat-chip-row
+            *ngFor="let receiver of receivers"
+            (removed)="remove(receiver.externalId.toString())"
+            [value]="receiver.externalId"
           >
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-      </mat-chip-grid>
-      <input
-        placeholder="New Receiver..."
-        #userInput
-        [formControl]="userCtrl"
-        [matChipInputFor]="chipGrid"
-        [matAutocomplete]="auto"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      />
-      <mat-autocomplete
-        #auto="matAutocomplete"
-        (optionSelected)="selected($event)"
-      >
-        <mat-option
-          *ngFor="let user of filteredUsers"
-          [value]="user.externalId"
+            {{ receiver.viewText }}
+            <button
+              matChipRemove
+              [attr.aria-label]="'remove ' + receiver.externalId"
+            >
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="New Receiver..."
+          #userInput
+          [formControl]="userCtrl"
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
         >
-          {{ user.firstName }} {{ user.lastName }}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+          <mat-option
+            *ngFor="let user of filteredUsers"
+            [value]="user.externalId"
+          >
+            {{ user.firstName }} {{ user.lastName }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
 
     <div class="line"></div>
     <div class="form-row-container">
@@ -113,8 +117,8 @@
       >
         Comment is <strong>required</strong>
       </mat-error>
-    </div>
 
-    <button class="submit-button grey-on-hover" type="submit">SEND</button>
+      <button class="submit-button grey-on-hover" type="submit">SEND</button>
+    </div>
   </form>
 </div>

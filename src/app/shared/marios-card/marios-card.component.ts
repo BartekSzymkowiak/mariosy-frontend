@@ -28,7 +28,7 @@ export class MariosCardComponent {
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         let mariosTypeOrUndefined = data.find(
-          (type) => type.text === this.marios.type
+          (type) => type.value === this.marios.type
         );
         if (mariosTypeOrUndefined !== undefined) {
           this.mariosType = mariosTypeOrUndefined;
@@ -38,7 +38,13 @@ export class MariosCardComponent {
 
   openDialog() {
     this.matDialog.open(MariosDialogComponent, {
-      data: this.marios,
+      data: {
+        creatorFirstName: this.marios.creatorFirstName,
+        creatorLastName: this.marios.creatorLastName,
+        title: this.marios.title,
+        comment: this.marios.comment,
+        mariosType: this.mariosType
+      } ,
       width: '700px',
       height: '275px',
     });
