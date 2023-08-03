@@ -5,7 +5,11 @@
       class="grid-item icon-size"
     ></mat-icon>
     <span class="from-text grid-item">
-      From: {{ marios.creatorFirstName }} {{ marios.creatorLastName }}
+      {{ textBeforeUsers }}&nbsp;
+      <span *ngIf="usersToDisplay.length == 1"> {{ usersToDisplay[0] }} </span>
+      <span *ngIf="usersToDisplay.length > 1">
+        {{ usersToDisplay[0] }}...
+      </span>
     </span>
 
     <mat-icon
@@ -15,7 +19,12 @@
     <span class="type-text grid-item">{{ mariosType.text }}</span>
 
     <span class="title-text grid-item">T:</span>
-    <span class="title-text grid-item">{{ marios.title }}</span>
+    <span class="title-text grid-item" *ngIf="marios.title.length <= 30">
+      {{ marios.title }}
+    </span>
+    <span class="title-text grid-item" *ngIf="marios.title.length > 30">
+      {{ marios.title | slice : 0 : 27 }}...
+    </span>
   </div>
 
   <p class="comment">

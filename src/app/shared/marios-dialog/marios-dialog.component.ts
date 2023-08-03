@@ -10,8 +10,7 @@ import { MariosDialog } from 'src/app/interfaces/mariosDialog';
 export class MariosDialogComponent {
   constructor(
     private dialogRef: MatDialogRef<MariosDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: MariosDialog,
-
+    @Inject(MAT_DIALOG_DATA) public data: MariosDialog
   ) {}
 
   close(): void {

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MariosDialogComponent } from '../marios-dialog/marios-dialog.component';
 import { Subject, takeUntil } from 'rxjs';
 import { MariosType } from 'src/app/interfaces/mariosType';
+import { USER_ID } from 'src/app/dev_constants';
 
 @Component({
   selector: 'app-marios-card',
@@ -21,6 +22,9 @@ export class MariosCardComponent {
 
   mariosType!: MariosType;
 
+  textBeforeUsers: string = '';
+  usersToDisplay: string[] = [];
+
   private destroy$: Subject<void> = new Subject();
 
   ngOnInit() {
@@ -32,13 +36,14 @@ export class MariosCardComponent {
           this.mariosType = mariosType;
         }
       });
+    this.initDisplayText();
   }
 
   openDialog() {
     this.matDialog.open(MariosDialogComponent, {
       data: {
-        creatorFirstName: this.marios.creatorFirstName,
-        creatorLastName: this.marios.creatorLastName,
+        textBeforeUsers: this.textBeforeUsers,
+        usersToDisplay: this.usersToDisplay,
         title: this.marios.title,
         comment: this.marios.comment,
         mariosType: this.mariosType,
@@ -46,5 +51,17 @@ export class MariosCardComponent {
       width: '700px',
       height: '275px',
     });
+  }
+
+  initDisplayText() {
+    if (this.marios.creatorExternalId === USER_ID) {
+      this.textBeforeUsers = 'To:';
+      this.usersToDisplay = this.marios.receiversNames;
+    } else {
+      this.textBeforeUsers = 'From:';
+      this.usersToDisplay = [
+        `${this.marios.creatorFirstName} ${this.marios.creatorLastName}`,
+      ];
+    }
   }
 }

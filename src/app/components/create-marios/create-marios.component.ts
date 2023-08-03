@@ -58,7 +58,7 @@ export class CreateMariosComponent {
         this.filteredUsers = resp.filter(
           (user) =>
             !this.receivers.some(
-              (addedReceiver) => addedReceiver.externalId === user.externalId 
+              (addedReceiver) => addedReceiver.externalId === user.externalId
             ) && user.externalId !== USER_ID
         );
       });
@@ -122,7 +122,7 @@ export class CreateMariosComponent {
       };
       this.mariosyService.addMarios(mariosPayload);
       this.mariosForm.reset();
-      this.router.navigate(['/home'])
+      this.router.navigate(['/home']);
     }
   }
 }

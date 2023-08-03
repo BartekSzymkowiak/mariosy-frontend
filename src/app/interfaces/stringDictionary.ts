@@ -1,3 +1,3 @@
-export interface StringDictionary{
-    [key: string]: string;
+export interface StringDictionary {
+  [key: string]: string;
 }

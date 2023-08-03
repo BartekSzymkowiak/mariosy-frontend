@@ -8,6 +8,7 @@ export interface Marios {
   creatorFirstName: String;
   creatorLastName: String;
   creationTimestamp: Date;
+  receiversNames: string[];
 }
 
 export interface MariosPayload {

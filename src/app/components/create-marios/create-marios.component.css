@@ -51,10 +51,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  
 }
 
-.form-label-text{
+.form-label-text {
   color: #000;
   font-family: Open Sans;
   font-size: 22px;
@@ -63,8 +62,6 @@
   line-height: normal;
   padding-bottom: 10px;
 }
-
-
 
 .type-chips {
   border-radius: 5px;
@@ -84,9 +81,5 @@
   font-size: 23px;
   height: 23px;
   width: 23px;
-  color: rgba(252, 207, 0, 1)
-
+  color: rgba(252, 207, 0, 1);
 }
-
-
-

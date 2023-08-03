@@ -7,7 +7,10 @@
     <div class="marios-modal-content">
       <div class="first-row">
         <span class="from-text">
-          From: {{ data.creatorFirstName }} {{ data.creatorLastName }}
+          {{ data.textBeforeUsers }}
+          <span *ngFor="let user of data.usersToDisplay; index as i">
+            {{ i < data.usersToDisplay.length - 1 ? user + ", " : user }}
+          </span>
         </span>
 
         <span class="type-text">
