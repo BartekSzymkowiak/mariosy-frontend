@@ -27,11 +27,9 @@ export class MariosCardComponent {
     this.mariosyService.mariosTypes
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
-        let mariosTypeOrUndefined = data.find(
-          (type) => type.value === this.marios.type
-        );
-        if (mariosTypeOrUndefined !== undefined) {
-          this.mariosType = mariosTypeOrUndefined;
+        let mariosType = data.find((type) => type.value === this.marios.type);
+        if (mariosType) {
+          this.mariosType = mariosType;
         }
       });
   }
@@ -43,8 +41,8 @@ export class MariosCardComponent {
         creatorLastName: this.marios.creatorLastName,
         title: this.marios.title,
         comment: this.marios.comment,
-        mariosType: this.mariosType
-      } ,
+        mariosType: this.mariosType,
+      },
       width: '700px',
       height: '275px',
     });
