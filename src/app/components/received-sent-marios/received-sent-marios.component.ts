@@ -29,7 +29,7 @@ export class ReceivedSentMariosComponent {
       this.mariosyService.receivedMarioses
         .pipe(takeUntil(this.destroy$))
         .subscribe((data) => {
-          this.marioses = data;
+          this.marioses = data.sort(compareByCreationTimestampDesc);
         });
     } else {
       this.gridTitle = 'SENT MARIOS:';
@@ -37,11 +37,10 @@ export class ReceivedSentMariosComponent {
       this.mariosyService.createdMarioses
         .pipe(takeUntil(this.destroy$))
         .subscribe((data) => {
-          this.marioses = data;
+          this.marioses = data.sort(compareByCreationTimestampDesc);
         });
     }
 
-    this.marioses.sort(compareByCreationTimestampDesc);
   }
 
   ngOnDestroy() {

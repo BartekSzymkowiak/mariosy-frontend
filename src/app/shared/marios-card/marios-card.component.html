@@ -13,10 +13,10 @@
     </span>
 
     <mat-icon
-      svgIcon="{{ mariosType.iconName }}"
+      svgIcon="{{ mariosType ? mariosType.iconName : 'green-star' }}"
       class="grid-item icon-size"
     ></mat-icon>
-    <span class="type-text grid-item">{{ mariosType.text }}</span>
+    <span class="type-text grid-item">{{ mariosType ? mariosType.text : '' }}</span>
 
     <span class="title-text grid-item">T:</span>
     <span class="title-text grid-item" *ngIf="marios.title.length <= 30">
