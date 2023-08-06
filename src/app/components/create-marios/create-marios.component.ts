@@ -35,8 +35,11 @@ export class CreateMariosComponent {
   ) {}
 
   mariosForm: FormGroup = new FormGroup({
-    title: new FormControl('', Validators.required),
-    comment: new FormControl('', Validators.required),
+    title: new FormControl('', [Validators.required, Validators.maxLength(63)]),
+    comment: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(255),
+    ]),
     receiversIds: new FormControl([], Validators.required),
     selectedCategory: new FormControl(null, Validators.required),
   });

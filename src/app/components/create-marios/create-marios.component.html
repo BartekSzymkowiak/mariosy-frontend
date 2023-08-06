@@ -5,11 +5,12 @@
   </a>
 
   <form class="marios-form" [formGroup]="mariosForm" (ngSubmit)="onSubmit()">
-    <div class="form-row-container-row-direction">
-      <mat-icon class="icon-person">person-sharp-yellow</mat-icon>
-
-      <mat-form-field class="example-chip-list">
-        <mat-label>Who you want to recognize?</mat-label>
+    <div class="form-row-container-receivers">
+      <mat-form-field class="example-chip-list" appearance="outline">
+        <mat-label
+          ><mat-icon class="icon-person">person-sharp-yellow</mat-icon> Who you
+          want to recognize?</mat-label
+        >
         <mat-chip-grid
           #chipGrid
           aria-label="Receiver selection"
@@ -52,7 +53,7 @@
     </div>
 
     <div class="line"></div>
-    <div class="form-row-container">
+    <div class="form-row-container-category">
       <div class="form-label-text">Select category:</div>
       <mat-chip-listbox
         aria-label="Marios types"
@@ -69,6 +70,7 @@
         </mat-chip-option>
       </mat-chip-listbox>
       <mat-error
+        class="error-text-category"
         *ngIf="
           mariosForm.controls['selectedCategory'].hasError('required') &&
           mariosForm.controls['selectedCategory'].touched
@@ -88,31 +90,52 @@
           formControlName="title"
           placeholder="Enter marios title"
         />
+
+        <mat-error
+          class="error-text"
+          *ngIf="
+            mariosForm.controls['title'].hasError('required') &&
+            mariosForm.controls['title'].touched
+          "
+        >
+          Title is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          class="error-text"
+          *ngIf="mariosForm.controls['title'].hasError('maxlength')"
+        >
+          Title can not be longer than 63 characters
+        </mat-error>
       </mat-form-field>
-      <mat-error
-        *ngIf="
-          mariosForm.controls['title'].hasError('required') &&
-          mariosForm.controls['title'].touched
-        "
-      >
-        Title is <strong>required</strong>
-      </mat-error>
     </div>
     <div class="line"></div>
     <div class="form-row-container">
       <div class="form-label-text">Comment:</div>
+
       <mat-form-field class="example-full-width" appearance="outline">
-        <input matInput #message maxlength="255" formControlName="comment" />
-        <mat-hint align="end">{{ message.value.length }} / 255</mat-hint>
+        <div class="textarea-wrapper">
+          <textarea
+            class="comment-textarea"
+            rows="4"
+            matInput
+            #message
+            maxlength="255"
+            formControlName="comment"
+          >
+          </textarea>
+          <span class="word-count">{{ message.value.length }}/255</span>
+        </div>
+
+        <mat-error
+          class="error-text"
+          *ngIf="
+            mariosForm.controls['comment'].hasError('required') &&
+            mariosForm.controls['comment'].touched
+          "
+        >
+          Comment is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
-      <mat-error
-        *ngIf="
-          mariosForm.controls['comment'].hasError('required') &&
-          mariosForm.controls['comment'].touched
-        "
-      >
-        Comment is <strong>required</strong>
-      </mat-error>
 
       <button class="submit-button grey-on-hover" type="submit">SEND</button>
     </div>

@@ -4,7 +4,8 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: stretch;
-  column-gap: 18px;
+  column-gap: 2vw;
   align-content: stretch;
-  margin-bottom: 36px;
+  margin-bottom: 2rem;
+  margin-top: 3vh;
 }

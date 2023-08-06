@@ -40,7 +40,6 @@ export class ReceivedSentMariosComponent {
           this.marioses = data.sort(compareByCreationTimestampDesc);
         });
     }
-
   }
 
   ngOnDestroy() {

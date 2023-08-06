@@ -29,7 +29,7 @@ export class UserService {
     return this.searchedUsers$.asObservable();
   }
 
-  searchUsers(searchText: string|null): Observable<User[]> {
+  searchUsers(searchText: string | null): Observable<User[]> {
     const url = `${this.usersUrl}?searchKeyword=${searchText}`;
     return this.http.get<User[]>(url);
   }

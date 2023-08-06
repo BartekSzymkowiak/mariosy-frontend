@@ -6,7 +6,7 @@ html {
 
 body {
   background: linear-gradient(
-    179deg,
+    180deg,
     #e74850 8.85%,
     #236fe9 27.08%,
     #4286f4 55.73%
@@ -27,7 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 1037px;
+  width: 80vw;
 }
 
 .button {
@@ -36,15 +36,15 @@ body {
   background: #ffdf24;
 
   color: #000;
-  font-size: 17px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: 0.935px;
+  letter-spacing: 0.1em;
   text-decoration: none;
 
   text-align: center;
-  padding: 10px 15px 10px 15px;
+  padding: 1% 2% 1% 2%;
 
   display: flex;
   align-items: center;
@@ -79,10 +79,34 @@ body {
 .white-font-header {
   color: #fff;
   font-family: Open Sans;
-  font-size: 25px;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: 3.5px;
-  padding: 10px 0px 10px 0px;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+}
+
+.mat-grid-tile-content
+{
+  align-items: flex-start !important;
+  justify-content: left !important;
+}  
+
+@media only screen and (max-width: 850px) {
+  .page-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 92vw;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .page-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 64vw;
+  }
 }

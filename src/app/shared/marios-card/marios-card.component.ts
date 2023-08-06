@@ -48,8 +48,7 @@ export class MariosCardComponent {
         comment: this.marios.comment,
         mariosType: this.mariosType,
       },
-      width: '700px',
-      height: '275px',
+      width: '50vw',
     });
   }
 
