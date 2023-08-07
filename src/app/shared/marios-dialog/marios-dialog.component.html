@@ -1,4 +1,4 @@
-<div class="marios-modal">
+<div id="marios-dialog" class="marios-modal">
   <button mat-icon-button (click)="close()">
     <mat-icon>close</mat-icon>
   </button>
@@ -6,7 +6,7 @@
   <mat-dialog-content>
     <div class="marios-modal-content">
       <div class="first-row">
-        <span class="from-text">
+        <span id="from-text" class="from-text">
           {{ data.textBeforeUsers }}
           <span *ngFor="let user of data.usersToDisplay; index as i">
             {{ i < data.usersToDisplay.length - 1 ? user + ", " : user }}
@@ -22,7 +22,7 @@
         </span>
       </div>
       <span class="title-text">{{ data.title }}</span>
-      <p class="comment-text">{{ data.comment }}</p>
+      <p id="comment-text" class="comment-text">{{ data.comment }}</p>
     </div>
   </mat-dialog-content>
 </div>

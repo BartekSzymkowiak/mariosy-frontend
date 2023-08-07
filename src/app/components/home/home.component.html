@@ -13,6 +13,7 @@
   </div>
 
   <a
+    id="add-button"
     class="button grey-on-hover"
     style="align-self: flex-end"
     routerLink="/create"
@@ -22,5 +23,5 @@
   </a>
 
   <span class="white-font-header">LAST MARIOS:</span>
-  <app-marios-grid [marioses]="lastMarioses"></app-marios-grid>
+  <app-marios-grid id="last-marioses-grid" [marioses]="lastMarioses"></app-marios-grid>
 </div>
