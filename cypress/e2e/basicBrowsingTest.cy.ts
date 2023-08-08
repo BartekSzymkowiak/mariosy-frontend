@@ -1,14 +1,10 @@
 /// <reference types="cypress" />
 
-import { convertCompilerOptionsFromJson } from "typescript";
-import { Text } from "@angular/compiler";
 import { homePage } from "../support/page_objects/homePage";
 import { mariosDialogPage } from "../support/page_objects/mariosDialogPage";
 import { receivedMariosesPage } from "cypress/support/page_objects/receivedMariosesPage";
 import { sentMariosesPage } from "cypress/support/page_objects/sentMariosesPage";
-
 import { getTextNthWord } from "../support/utils"
-
 
 describe('Basic Marioses browsing tests', () => {
 
@@ -20,7 +16,6 @@ describe('Basic Marioses browsing tests', () => {
   it("Display last marios", () => {
 
     homePage.checkLastMariosLabel()
-    homePage.checkAddButton()     // REMOVE THIS
     homePage.checkLastMariosesCount(9)
  
     let lastMariosComment = homePage.checkAndGetLastMariosComment()
@@ -33,23 +28,60 @@ describe('Basic Marioses browsing tests', () => {
     mariosDialogPage.checkFirstUser(mariosFirstUser)
   });
 
+  
   it("Display received marioses", () => {
+    let expectedReceivedMariosesCount = 15
 
+    homePage.checkLastMariosLabel()
     homePage.checkReceivedMariosesCountGreaterThan(0)
-    let receivedMariosesCount = homePage.getReceivedMariosesCount()
-
+    homePage.checkReceivedMariosesCount(expectedReceivedMariosesCount)
+   
     homePage.clickReceivedMariosesCard()
     receivedMariosesPage.checkReceivedMariosLabel()
     receivedMariosesPage.checkBackButton()
-
     receivedMariosesPage.checkMariosesCountGreaterThan(0)
-    // !!!!!!
-    receivedMariosesPage.checkReceivedMariosesCount(receivedMariosesCount)
+    receivedMariosesPage.checkReceivedMariosesCount(expectedReceivedMariosesCount)
+
+    let lastMariosComment = receivedMariosesPage.checkAndGetLastMariosComment()
+    let commentFirstWord = getTextNthWord(lastMariosComment,1)
+    let mariosFirstUser = receivedMariosesPage.checkAndGetLastMariosUser()
+
+    receivedMariosesPage.clickLastMariosTile()
+
+    mariosDialogPage.checkCommentFirstWord(commentFirstWord)
+    mariosDialogPage.checkFirstUser(mariosFirstUser)
+    mariosDialogPage.clickCloseButton()
 
     receivedMariosesPage.clickBackButton()
     homePage.checkLastMariosLabel()
   })
 
 
-  
+  it("Display sent marioses", () => {
+    let expectedSentMariosesCount = 10
+
+    homePage.checkLastMariosLabel()
+    homePage.checkSentMariosesCountGreaterThan(0)
+    homePage.checkSentMariosesCountEqual(expectedSentMariosesCount)
+   
+    homePage.clickSentMariosesCard()
+    sentMariosesPage.checkSentMariosLabel()
+    sentMariosesPage.checkBackButton()
+    sentMariosesPage.checkMariosesCountGreaterThan(0)
+    sentMariosesPage.checkSentMariosesCount(expectedSentMariosesCount)
+
+    let lastMariosComment = sentMariosesPage.checkAndGetLastMariosComment()
+    let commentFirstWord = getTextNthWord(lastMariosComment,1)
+    let mariosFirstUser = sentMariosesPage.checkAndGetLastMariosUser()
+
+    sentMariosesPage.clickLastMariosTile()
+
+    mariosDialogPage.checkCommentFirstWord(commentFirstWord)
+    mariosDialogPage.checkFirstUser(mariosFirstUser)
+    mariosDialogPage.clickCloseButton()
+
+    sentMariosesPage.clickBackButton()
+    homePage.checkLastMariosLabel()
+  })
+
 });

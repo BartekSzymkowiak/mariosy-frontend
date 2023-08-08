@@ -8,6 +8,10 @@ export class HomePage{
         cy.get('#add-button').should('contain.text', 'ADD MARIOS').should('have.attr','href', '/create');
     }
 
+    clickAddButton(){
+        cy.get('#add-button').click();
+    }
+
     checkLastMariosesCount(expectedCount: number){
         cy.get('#last-marioses-grid').find('mat-grid-tile').its('length').should('eq', expectedCount)
     }
@@ -51,9 +55,6 @@ export class HomePage{
         cy.get('app-info-card').find('[href="/received"]').click()
     }
 
-
-    
-
     checkSentMariosesCountGreaterThan(number: number){
         cy.get('app-info-card').find('[href="/sent"]').find('.number-font').invoke('text').then(parseInt).should('be.gt', number)
     }
@@ -62,7 +63,17 @@ export class HomePage{
         cy.get('app-info-card').find('[href="/sent"]').find('.number-font').invoke('text').then(parseInt).should('be.eq', number)
     }
 
-  
+    clickSentMariosesCard(){
+        cy.get('app-info-card').find('[href="/sent"]').click()
+    }
+
+    checkLastMariosCommentContains(text: string){
+        cy.get('#last-marioses-grid').find('mat-grid-tile').eq(0).find('.comment').contains(text)
+     }
+
+    checkLastMariosUserContains(text: string){
+        cy.get('#last-marioses-grid').find('mat-grid-tile').eq(0).find('.headers-grid-container > span > span').contains(text)      
+    }
 
 }
 

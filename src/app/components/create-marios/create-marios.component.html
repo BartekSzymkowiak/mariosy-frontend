@@ -1,12 +1,12 @@
 <div class="page-content-container">
-  <a class="button grey-on-hover" (click)="goBack()">
+  <a id="back-button" class="button grey-on-hover" (click)="goBack()">
     <mat-icon svgIcon="left-arrow"></mat-icon>
     <span style="padding-left: 5px">BACK</span>
   </a>
 
   <form class="marios-form" [formGroup]="mariosForm" (ngSubmit)="onSubmit()">
     <div class="form-row-container-receivers">
-      <mat-form-field class="example-chip-list" appearance="outline">
+      <mat-form-field id="receivers-form-filed" class="example-chip-list" appearance="outline">
         <mat-label
           ><mat-icon class="icon-person">person-sharp-yellow</mat-icon> Who you
           want to recognize?</mat-label
@@ -53,7 +53,7 @@
     </div>
 
     <div class="line"></div>
-    <div class="form-row-container-category">
+    <div id="category-row-container" class="form-row-container-category">
       <div class="form-label-text">Select category:</div>
       <mat-chip-listbox
         aria-label="Marios types"
@@ -81,7 +81,7 @@
     </div>
 
     <div class="line"></div>
-    <div class="form-row-container">
+    <div id="title-row-container" class="form-row-container">
       <div class="form-label-text">Title:</div>
       <mat-form-field class="example-full-width" appearance="outline">
         <input
@@ -109,7 +109,7 @@
       </mat-form-field>
     </div>
     <div class="line"></div>
-    <div class="form-row-container">
+    <div id="comment-row-container" class="form-row-container">
       <div class="form-label-text">Comment:</div>
 
       <mat-form-field class="example-full-width" appearance="outline">

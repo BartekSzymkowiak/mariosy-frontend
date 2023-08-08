@@ -16,13 +16,33 @@ export class SentMariosesPage{
         cy.get('app-marios-grid').find('mat-grid-tile').its('length').should('gt', number)
     }
 
-    checkSentMariosesCount(expectedCount: Cypress.Chainable<JQuery<HTMLElement>>){
-        cy.log(expectedCount)
-        expectedCount.then((text) => {
-            
-            cy.get('app-marios-grid').find('mat-grid-tile').its('length').should('eq', parseInt(text,10))
-        })
+ 
+    checkSentMariosesCount(number: number){            
+        cy.get('app-marios-grid').find('mat-grid-tile').its('length').should('eq', number)
     }
+
+    checkAndGetLastMariosComment(): Cypress.Chainable<JQuery<HTMLElement>>{
+        cy.get('mat-grid-list').find('mat-grid-tile').eq(0).find('.comment').invoke('text').as('commentText')
+
+        cy.get('@commentText').then((text) => {
+        expect(text.length).to.be.at.least(1)})
+
+        return cy.get('@commentText')
+    }
+
+    checkAndGetLastMariosUser(): Cypress.Chainable<JQuery<HTMLElement>>{
+        cy.get('mat-grid-list').find('mat-grid-tile').eq(0).find('.headers-grid-container > span > span').invoke('text').as('firstUser')
+
+        cy.get('@firstUser').then((text) => {
+        expect(text.length).to.be.at.least(1)})
+
+        return cy.get('@firstUser')
+    }
+
+    clickLastMariosTile(){
+        cy.get('mat-grid-list').find('mat-grid-tile').eq(0).click()
+    }
+
 
 }
 

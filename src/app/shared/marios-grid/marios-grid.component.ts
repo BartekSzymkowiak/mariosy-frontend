@@ -16,7 +16,7 @@ export class MariosGridComponent {
   onBoxResize() {
     if (this.box) {
       if (
-        this.box.nativeElement.clientWidth / window.screen.width < 0.45 ||
+        this.box.nativeElement.clientWidth / window.screen.width < 0.35 ||
         this.box.nativeElement.clientWidth < 850
       ) {
         this.columns = 2;
