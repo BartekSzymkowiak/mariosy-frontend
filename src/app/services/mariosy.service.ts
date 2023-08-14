@@ -86,8 +86,8 @@ export class MariosyService {
     });
   }
 
-  getReceivedMarioses(userId: string) {
-    if (this.receivedMariosesData.length === 0) {
+  getReceivedMarioses(userId: string, forceFetch: boolean) {
+    if (this.receivedMariosesData.length === 0 || forceFetch) {
       this.fetchReceivedMarioses(userId);
     }
     return this.receivedMarioses$.asObservable();

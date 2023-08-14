@@ -35,7 +35,7 @@ export class ReceivedSentMariosComponent {
       this.gridTitle = 'RECEIVED MARIOS:';
 
       this.mariosyService
-        .getReceivedMarioses(this.userId)
+        .getReceivedMarioses(this.userId, true)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data) => {
           this.marioses = data.sort(compareByCreationTimestampDesc);

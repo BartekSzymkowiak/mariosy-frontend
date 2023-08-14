@@ -39,11 +39,8 @@ export class UserService {
     this.http.get(url).subscribe(
       (response) => {},
       (error) => {
-        console.log(error.status);
         if (error.status == 404) {
-          this.http.post<User>(this.usersUrl, null).subscribe((data) => {
-            console.log(data);
-          });
+          this.http.post<User>(this.usersUrl, null).subscribe((data) => {});
         }
       }
     );
