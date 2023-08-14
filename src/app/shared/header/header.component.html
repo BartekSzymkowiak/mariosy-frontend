@@ -4,5 +4,14 @@
     alt="Mariosy Logo"
     class="mariosy_logo"
   />
+
+  <mat-icon
+    class="logout_icon logout_icon_position"
+    (click)="logout()"
+    *ngIf="logged_in"
+    matTooltip="Log out"
+    >exit_to_app</mat-icon
+  >
+
   <div id="line"></div>
 </header>

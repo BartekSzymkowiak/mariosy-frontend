@@ -33,4 +33,19 @@ export class UserService {
     const url = `${this.usersUrl}?searchKeyword=${searchText}`;
     return this.http.get<User[]>(url);
   }
+
+  checkAndCreateUserIfNotExists(externalId: string) {
+    const url = `${this.usersUrl}/${externalId}`;
+    this.http.get(url).subscribe(
+      (response) => {},
+      (error) => {
+        console.log(error.status);
+        if (error.status == 404) {
+          this.http.post<User>(this.usersUrl, null).subscribe((data) => {
+            console.log(data);
+          });
+        }
+      }
+    );
+  }
 }
