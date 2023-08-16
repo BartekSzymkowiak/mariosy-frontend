@@ -87,11 +87,32 @@ body {
   padding: 0.5rem 0rem 0.5rem 0rem;
 }
 
-.mat-grid-tile-content
-{
+.mat-grid-tile-content {
   align-items: flex-start !important;
   justify-content: left !important;
-}  
+}
+
+.mdc-line-ripple {
+  display: none;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white;
+}
+
+.form-row-container-receivers
+  > mat-form-field
+  > .mat-mdc-form-field-subscript-wrapper {
+  height: 0px;
+}
+
+.mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex {
+  align-self: center;
+}
+
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+  font-family: Open Sans !important;
+}
 
 @media only screen and (max-width: 850px) {
   .page-content-container {
