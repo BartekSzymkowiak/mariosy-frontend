@@ -66,3 +66,7 @@ button {
   line-height: normal;
   margin: 0em 0em 0em 0em;
 }
+
+.mat-mdc-icon-button {
+  --mat-mdc-button-persistent-ripple-color: white;
+}

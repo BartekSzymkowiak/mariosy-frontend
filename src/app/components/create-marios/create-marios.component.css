@@ -54,11 +54,20 @@
 
 .form-row-container-receivers {
   padding: 1% 2% 1% 2%;
+  display: flex;
+}
+
+.icon-person-container {
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .icon-person {
   scale: 150%;
   color: rgba(252, 207, 0, 1);
+
+  background-repeat: no-repeat;
 }
 
 .form-label-text {
@@ -90,12 +99,16 @@
   --mdc-chip-elevated-container-color: #236fe9;
 }
 
-.example-chip-list {
-  width: 100%;
-  min-height: 8em;
+.mdc-text-field {
+  background-color: white;
 }
 
-.example-full-width {
+.chip-list {
+  width: 100%;
+  min-height: 6em;
+}
+
+.full-width {
   width: 100%;
 }
 
@@ -127,4 +140,13 @@
   font-family: Open Sans;
   color: rgba(203, 203, 203, 1);
   font-size: 1.125em;
+}
+
+.user-text {
+  color: #8d8080;
+  font-family: Open Sans;
+  font-size: 1.375em;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
